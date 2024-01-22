@@ -10,7 +10,9 @@ public class GraphDirector extends Application {
     public void start(Stage stage) {
         double[] y = { 1, 2, 1, 4, 3, 2 };
 
-        GraphBuilder graphBuilder = new LineChartBuilder();
+        GraphBuilder lGraphBuilder = new LineChartBuilder();
+        GraphBuilder bGraphBuilder = new BarChartBuilder();
+        GraphBuilder graphBuilder = lGraphBuilder;
         Scene scene = graphBuilder.drawGraph(y);
 
         stage.setScene(scene);
