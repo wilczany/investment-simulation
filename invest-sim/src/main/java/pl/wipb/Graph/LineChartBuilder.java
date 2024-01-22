@@ -12,7 +12,7 @@ public class LineChartBuilder extends GraphBuilder {
         final NumberAxis yAxis = new NumberAxis();
         final LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
 
-        XYChart.Series series = new XYChart.Series();
+        XYChart.Series<Number, Number> series = new XYChart.Series();
         series.setName("My portfolio"); // dodatkowy parametr nazwy
         for (int i = 0; i < y.length; i++) {
             series.getData().add(new XYChart.Data(i + 1, y[i]));

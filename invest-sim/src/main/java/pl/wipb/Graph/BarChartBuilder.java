@@ -8,6 +8,7 @@ import javafx.scene.chart.XYChart;
 
 public class BarChartBuilder extends GraphBuilder {
     @Override
+    @SuppressWarnings("unchecked")
     public Scene drawGraph(double[] y) {
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();

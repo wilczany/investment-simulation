@@ -19,31 +19,30 @@ public class InvestmentData {
     private InvestmentCaretaker caretaker;
     private Investment inv;
 
-    public InvestmentData(int ID, String name, double[] values) {
-        this.id = ID;
-        this.name = name;
-        this.values = values;
+    @SuppressWarnings("unchecked")
+    public InvestmentData(String pathToJSON) {
 
         this.inv = new Stock(id, name);
         this.caretaker = new InvestmentCaretaker(inv);
-
+        JSONArray jsonList;
         JSONParser parser = new JSONParser();
 
-        try (FileReader reader = new FileReader("resources/data/akcje.json")) {
+        try (FileReader reader = new FileReader(pathToJSON)) {
 
             Object obj = parser.parse(reader);
-            JSONArray empList = (JSONArray) obj;
-            System.out.println(empList);
+            jsonList = (JSONArray) obj;
+            System.out.println(jsonList);
+
+            jsonList.forEach(emp -> jsonToObjects((JSONObject) emp));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (org.json.simple.parser.ParseException e) {
             e.printStackTrace();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(values);
+
     }
 
     public Investment getInvestment() {
@@ -55,4 +54,9 @@ public class InvestmentData {
     public InvestmentCaretaker getCaretaker() {
         return caretaker;
     }
+
+    private void jsonToObjects(JSONObject json) {
+
+    }
+
 }
