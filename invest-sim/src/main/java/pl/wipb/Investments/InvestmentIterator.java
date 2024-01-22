@@ -1,29 +1,25 @@
 package pl.wipb.Investments;
+import java.util.ArrayList;
 
-// import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-// import java.io.InputStream;
-// import java.nio.file.Paths;
 
-import org.json.simple.JSONArray;
-// import org.json.JSONObject;
-// import org.json.JSONTokener;
-import org.json.simple.parser.JSONParser;
-
-import pl.wipb.Investments.JSONHandlers.InvestmentData;
+import pl.wipb.Investments.JSONHandlers.StockData;
 
 
 public class InvestmentIterator {
 
-    InvestmentCaretaker caretakers[];
+    ArrayList <InvestmentCaretaker> caretakers = new ArrayList<InvestmentCaretaker>();
 
     public InvestmentIterator() {
-        InvestmentData data = new InvestmentData("resources/data/akcje.json");
-        // InvestmentCaretaker caretaker = data.getCaretaker();
+        StockData data = new StockData("resources/data/akcje.json");
+        ArrayList <InvestmentCaretaker> tmp = data.getCaretakers();
 
-  
+        for (InvestmentCaretaker investmentCaretaker : tmp) {
+           caretakers.add(investmentCaretaker);
+        }
+
+        System.out.println(
+            caretakers.get(0).getInvestment().value
+            );
 
     }
 }

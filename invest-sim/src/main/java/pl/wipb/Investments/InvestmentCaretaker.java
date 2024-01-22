@@ -1,12 +1,12 @@
 package pl.wipb.Investments;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import pl.wipb.Investments.Investment.InvestmentMemento;
 
 public class InvestmentCaretaker {
     
-    List<Investment.InvestmentMemento> mementos;
+    ArrayList<Investment.InvestmentMemento> mementos = new ArrayList<Investment.InvestmentMemento>();
 
     Investment originator;
 
@@ -24,7 +24,15 @@ public class InvestmentCaretaker {
         return history;
     }
 
-    public void saveInvestment(){
+    public void saveToMemento(){
         mementos.add(originator.saveToMemento());
+    }
+
+    public Investment getInvestment(){
+        return originator;
+    }
+
+    public void restoreFromMemento(int day){
+        originator.restoreFromMemento(mementos.get(day));
     }
 }
