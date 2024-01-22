@@ -1,0 +1,17 @@
+{  
+    "obligacje" : [
+        {
+           "name" : "ROS",
+            "value" : "320",
+            "intrest_rate" : "1.005"
+        },
+        {
+            "name" : "DBAA",
+            "value" : "100",
+            "intrest_rate" : "1.001"
+        }
+
+
+    ] 
+
+}

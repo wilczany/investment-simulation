@@ -1,14 +1,20 @@
 package pl.wipb.Investments;
 
-public class Investment {
+
+public abstract class Investment {
     int id;
     String name;
     double value;
     int day; // state
 
-    public Investment(int id, String name, double value, int day) {
+    public Investment(int id, String name) {
         this.id = id;
         this.name = name;
+        // this.value = value;
+        // this.days = days;
+    }
+
+    public void setValue(double value, int day) {
         this.value = value;
         this.day = day;
     }
@@ -18,7 +24,8 @@ public class Investment {
     }
 
     public void restoreFromMemento(InvestmentMemento memento) {
-        this.value = memento.getState();
+        this.value = memento.getValue();
+        this.day = memento.getDay();
     }
 
     // TODO zrobienie klonowania do róznych typów inwestycji
@@ -34,14 +41,18 @@ public class Investment {
     class InvestmentMemento {
         
         private int day;
-        private double value ;
+        private double value;
 
-        public InvestmentMemento(int day, double state) {
-            this.value = state;
+        public InvestmentMemento(int day, double value) {
+            this.value = value;
+            this.day = day;
         }
 
-        private double getState() {
+        protected double getValue() {
             return value;
+        }
+        protected int getDay() {
+            return day;
         }
 
     }
