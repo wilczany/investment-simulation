@@ -4,13 +4,11 @@ import java.util.List;
 
 public class WalletHistoryProxy {
 
-    //private  implementation wallet;        zmienic
+    // private implementation wallet; zmienic
     private WalletHistory history;
     private List<WalletHistory> historyList;
-    public List<WalletHistory> getHistory() 
-    {
-        return historyList;
-    }  
+
+    public List<WalletHistory> getHistory() {
+        return this.historyList;
+    }
 }
-
-
