@@ -1,14 +1,18 @@
 package pl.wipb.Investments;
 
+import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class Investment {
-    int id;
+
+    static final AtomicLong NEXT_ID = new AtomicLong(0);
+    final long id = NEXT_ID.getAndIncrement();
+
     String name;
     double value;
     int day; // state
 
-    public Investment(int id, String name) {
-        this.id = id;
+    public Investment(String name) {
+       
         this.name = name;
         // this.value = value;
         // this.days = days;

@@ -12,27 +12,18 @@ import org.json.simple.JSONArray;
 // import org.json.JSONTokener;
 import org.json.simple.parser.JSONParser;
 
+import pl.wipb.Investments.JSONHandlers.InvestmentData;
+
+
 public class InvestmentIterator {
 
     InvestmentCaretaker caretakers[];
 
     public InvestmentIterator() {
+        InvestmentData data = new InvestmentData("resources/data/akcje.json");
+        // InvestmentCaretaker caretaker = data.getCaretaker();
 
-        JSONParser parser = new JSONParser();
+  
 
-        try (FileReader reader = new FileReader("resources/data/akcje.json")) {
-
-            Object obj = parser.parse(reader);
-            JSONArray empList = (JSONArray) obj;
-            System.out.println(empList);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (org.json.simple.parser.ParseException e) {
-            e.printStackTrace();
-
-        }
     }
 }
