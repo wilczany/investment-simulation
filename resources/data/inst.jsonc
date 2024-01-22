@@ -1,0 +1,49 @@
+{
+    // TODO do ogarniecia mechanizm klonowania
+    "crypto" : {
+            "1": {
+                "name": "Bitcoin",
+                // TODO wymyslic dzialanie krypt
+
+            }
+    },
+
+    "obligacje" : {
+        "1" :{
+            "name" : "ROS",
+            "value" : "320",
+            "intrest_rate" : "1.005"
+        },
+        "2" : {
+            "name" : "DBAA",
+            "value" : "100",
+            "intrest_rate" : "1.000"
+        }
+
+
+    }, 
+
+    "akcje" :
+    {
+        "1" :{
+            "name" : "Beerhub.pl",
+            "values" : {
+                "1" : "200",
+                "2" : "220",
+                "3" : "240",
+                "4" : "242", 
+                "5" : "190"
+            }
+        },
+        "2" : {
+            "name" : "Orlen",
+            "values" : {
+                "1" : "420",
+                "2" : "400",
+                "3" : "450",
+                "4" : "390",
+                "5" : "420"
+            }
+        }
+    }
+}
