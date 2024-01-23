@@ -10,12 +10,12 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 public class BarChartBuilder extends GraphBuilder {
-    public Chart drawGraph(ArrayList<Double> values) {
+    public Chart drawGraph(String name, ArrayList<Double> values) {
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String, Number> barChart = new BarChart(xAxis, yAxis);
 
-        XYChart.Series series = parseValuesToSeries(values);
+        XYChart.Series series = parseValuesToSeries(name, values);
 
         // Scene scene = new Scene(barChart, 800, 600);
         barChart.getData().add(series);
@@ -23,17 +23,18 @@ public class BarChartBuilder extends GraphBuilder {
         return barChart;
     }
 
-    public XYChart.Series parseValuesToSeries(ArrayList<Double> values) {
+    public XYChart.Series parseValuesToSeries(String name, ArrayList<Double> values) {
         XYChart.Series<String, Number> series = new XYChart.Series();
+        series.setName(name);
         for (int i = 0; i < values.size(); i++) {
             series.getData().add(new XYChart.Data((i + 1) + "", values.get(i)));
         }
         return series;
     }
 
-    public boolean populateGraph(ArrayList<Double> values, Chart chart) {
+    public boolean populateGraph(String name, ArrayList<Double> values, Chart chart) {
         BarChart<String, Number> barChart = (BarChart<String, Number>) chart;
-        XYChart.Series series = parseValuesToSeries(values);
+        XYChart.Series series = parseValuesToSeries(name, values);
         barChart.getData().add(series);
 
         return true;

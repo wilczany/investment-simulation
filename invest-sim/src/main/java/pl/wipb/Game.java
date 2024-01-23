@@ -14,7 +14,7 @@ import java.util.Map;
 
 import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
-import pl.wipb.Investments.JSONHandlers.StockData;
+import pl.wipb.Investments.JSONHandlers.ObligationData;
 import pl.wipb.Iterator.TimeIterator;
 
 public class Game {
@@ -69,6 +69,8 @@ public class Game {
     }
 
     public Map<String, ArrayList<Double>> getStockValuesTillDay(int day) {
+        if (day < 1)
+            return new HashMap<>();
         Map<String, ArrayList<Double>> map = new HashMap<>();
         for (InvestmentCaretaker investmentCaretaker : caretakers) {
             MementoIterator it = new MementoIterator(investmentCaretaker, day);
@@ -85,7 +87,8 @@ public class Game {
     }
 
     private void initDatafromJSON() {
-        StockData data = new StockData("resources/data/akcje.json");
+        // ObligationData data = new ObligationData("resources/data/akcje.json");
+        ObligationData data = new ObligationData("resources/data/obligacje.json");
         ArrayList<InvestmentCaretaker> tmp = data.getCaretakers();
 
         for (InvestmentCaretaker investmentCaretaker : tmp) {

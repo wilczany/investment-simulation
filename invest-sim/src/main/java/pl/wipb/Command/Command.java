@@ -5,12 +5,11 @@ import pl.wipb.Investments.Investment;
 
 import java.util.List;
 
-public class Command {
-   // private List<Pair<Investment, Integer>> transactions;                      // żle to robie czy co ?
-    //private IWallet wallet; zmienić
+// - Player
+//invoker - Investment
+public interface Command {
+    // inicjator ma mieć pole private Command command;
+    public void undo();
 
-    public void undo()
-    {
-
-    }
+    public void redo();
 }
