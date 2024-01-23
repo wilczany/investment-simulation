@@ -1,4 +1,4 @@
 .vscode/
-
+invest-sim/target/
 .idea/
-
+*.class

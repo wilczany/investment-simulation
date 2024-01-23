@@ -23,7 +23,8 @@ public class GraphDirector extends Application {
         Game game = new Game();
         GraphBuilder graphBuilders[] = { new LineChartBuilder(), new BarChartBuilder() };
 
-        game.StartGame();
+        // game.StartGame();
+
         this.stockData = game.getStockValuesTillDay(10);
 
         stockData.forEach((key, values) -> {

@@ -15,7 +15,13 @@ import java.util.Map;
 import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Investments.JSONHandlers.ObligationData;
+import pl.wipb.Investments.JSONHandlers.StockData;
 import pl.wipb.Iterator.TimeIterator;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.fxml.FXML;
 
 public class Game {
 
@@ -26,46 +32,48 @@ public class Game {
     private List<Double> high_score;
     private ArrayList<InvestmentCaretaker> caretakers = new ArrayList<InvestmentCaretaker>();
 
-    public Game GetInstance() {
+    public static Game getInstance() {
         if (Game.instance == null) {
             Game.instance = new Game();
         }
         return Game.instance;
     }
 
-    public void StartGame() {
+    public void startGame() {
         initDatafromJSON();
     }
 
-    public void EndGame() {
+    public void endGame() {
 
     }
 
-    public void AddPlayer(Player player) {
+    public void addPlayer(Player player) {
 
     }
 
-    public void NextDay() {
+    public void nextDay() {
         Iterator ite = new TimeIterator(caretakers);
+        System.out.println("start");
 
         while (ite.hasNext()) {
+            System.out.println("pętla");
             InvestmentCaretaker caretaker = ite.next();
-            caretaker.restoreFromMemento(day + 1);
+            caretaker.restoreFromMemento(day++);
         }
-
-        day++;
-
     }
 
     public void skipDays(int number) {
         day += number;
     }
-    // debug
 
     public void printStockValues() {
         for (InvestmentCaretaker investmentCaretaker : caretakers) {
             System.out.println(investmentCaretaker.getInvestment().getValue());
         }
+    }
+
+    public ArrayList<InvestmentCaretaker> getInvestments() {
+        return caretakers;
     }
 
     public Map<String, ArrayList<Double>> getStockValuesTillDay(int day) {
@@ -87,9 +95,10 @@ public class Game {
     }
 
     private void initDatafromJSON() {
-        // ObligationData data = new ObligationData("resources/data/akcje.json");
-        ObligationData data = new ObligationData("resources/data/obligacje.json");
-        ArrayList<InvestmentCaretaker> tmp = data.getCaretakers();
+        StockData data1 = new StockData("resources/data/akcje.json");
+        ObligationData data2 = new ObligationData("resources/data/obligacje.json");
+        ArrayList<InvestmentCaretaker> tmp = data1.getCaretakers();
+        tmp.addAll(data2.getCaretakers());
 
         for (InvestmentCaretaker investmentCaretaker : tmp) {
             caretakers.add(investmentCaretaker);

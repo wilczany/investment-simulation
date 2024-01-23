@@ -37,4 +37,10 @@ public class InvestmentCaretaker {
         return originator;
     }
 
+    public String toString() {
+        String s = "";
+        s += originator.name + " : " + originator.getValue() + "\n";
+        return s;
+    }
+
 }
