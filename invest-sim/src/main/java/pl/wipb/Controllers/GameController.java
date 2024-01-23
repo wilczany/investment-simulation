@@ -44,7 +44,7 @@ public class GameController {
         nextDayBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                caretakersList.getItems().clear();
+                //caretakersList.getItems().clear();
                 nextDay();
                 System.out.println("klik");
             }

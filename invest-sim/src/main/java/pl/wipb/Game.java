@@ -57,9 +57,10 @@ public class Game {
 
         while (ite.hasNext()) {
             System.out.println("pętla");
-            InvestmentCaretaker caretaker = ite.next();
+            InvestmentCareta    ker caretaker = ite.next();
             caretaker.restoreFromMemento(day++);
         }
+        System.out.println("koniec");
     }
 
     public void skipDays(int number) {
