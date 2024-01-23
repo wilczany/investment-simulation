@@ -75,11 +75,11 @@ public class Game {
             ArrayList<Double> values = new ArrayList<Double>();
 
             InvestmentCaretaker currentCaretaker;
-            while (it.hasNext()) {
+            do {
                 currentCaretaker = it.next();
                 values.add(currentCaretaker.getInvestment().getValue());
-            }
-            map.put(currentCaretaker.getInvestment().getName(), values); // chuj tam to debugowe
+            } while (it.hasNext());
+            map.put(currentCaretaker.getInvestment().getName(), values);
         }
         return map;
     }
