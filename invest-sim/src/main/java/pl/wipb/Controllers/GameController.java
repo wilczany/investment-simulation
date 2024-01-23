@@ -40,27 +40,6 @@ public class GameController {
             caretakersList.getItems().add(iC);
         }
         System.out.println(caretakersList.getItems());
-<<<<<<< Updated upstream
-
-        nextDayBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                //caretakersList.getItems().clear();
-                nextDay();
-                System.out.println("klik");
-            }
-        });
-
-        // while (true) {
-        // try {
-        // wait(1000);
-        // game.nextDay();
-        // } catch (InterruptedException e) {
-        // System.err.println(e);
-        // }
-        // }
-=======
->>>>>>> Stashed changes
     }
 
     @FXML

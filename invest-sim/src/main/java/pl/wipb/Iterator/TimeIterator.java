@@ -18,22 +18,15 @@ public class TimeIterator implements Iterator {
     }
 
     public boolean hasNext() {
-        return false;
-        // if (this.index <= caretakers.size())
-        //     return true;
-        // else {
-        //     return false;
-        // }
+        if (this.index <= caretakers.size())
+            return true;
+        else {
+            return false;
+        }
     }
 
     public InvestmentCaretaker next() {
-<<<<<<< Updated upstream
-        index++;
-        
-        InvestmentCaretaker nxt = this.caretakers.get(index);
-=======
         InvestmentCaretaker nxt = this.caretakers.get(index++);
->>>>>>> Stashed changes
         return nxt;
     }
 

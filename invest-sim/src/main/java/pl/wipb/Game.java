@@ -55,20 +55,12 @@ public class Game {
         Iterator ite = new TimeIterator(caretakers);
 
         while (ite.hasNext()) {
-<<<<<<< Updated upstream
-            System.out.println("pętla");
-            InvestmentCareta    ker caretaker = ite.next();
-            caretaker.restoreFromMemento(day++);
-        }
-        System.out.println("koniec");
-=======
             InvestmentCaretaker caretaker = null;
             caretaker = ite.next();
             caretaker.restoreFromMemento(day + 1);
             System.out.println(caretaker);
         }
         day++;
->>>>>>> Stashed changes
     }
 
     public void skipDays(int number) {
