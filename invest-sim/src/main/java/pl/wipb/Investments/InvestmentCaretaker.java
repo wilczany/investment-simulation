@@ -32,7 +32,10 @@ public class InvestmentCaretaker {
         return originator;
     }
 
-    public void restoreFromMemento(int day){
+    public Investment restoreFromMemento(int day){
         originator.restoreFromMemento(mementos.get(day));
+        return originator;
     }
+
+
 }

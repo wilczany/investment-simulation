@@ -14,8 +14,6 @@ public abstract class Investment {
     public Investment(String name) {
        
         this.name = name;
-        // this.value = value;
-        // this.days = days;
     }
 
     public void setValue(double value, int day) {
@@ -31,7 +29,14 @@ public abstract class Investment {
         this.value = memento.getValue();
         this.day = memento.getDay();
     }
-
+    
+    public long getId() {
+        return id;
+    }
+    public double getValue() {
+        return value;
+    }
+    
     // TODO zrobienie klonowania do róznych typów inwestycji
     // trzeba rozpatrzyc na czym to bedzie polegac bo nie pameitam
 
@@ -42,7 +47,7 @@ public abstract class Investment {
     }
 
     // memento
-    class InvestmentMemento {
+    public class InvestmentMemento {
         
         private int day;
         private double value;
@@ -52,7 +57,7 @@ public abstract class Investment {
             this.day = day;
         }
 
-        protected double getValue() {
+        public double getValue() {
             return value;
         }
         protected int getDay() {

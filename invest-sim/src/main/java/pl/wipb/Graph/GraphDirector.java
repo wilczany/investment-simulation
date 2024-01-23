@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GraphDirector extends Application {
-
     @Override
     public void start(Stage stage) {
         double[] y = { 1, 2, 1, 4, 3, 2 };
