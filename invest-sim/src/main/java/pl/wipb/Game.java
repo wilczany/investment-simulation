@@ -1,8 +1,17 @@
 package pl.wipb;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
+
 import pl.wipb.Iterator.Iterator;
+import pl.wipb.Iterator.MementoIterator;
+
 import java.util.List;
+import java.util.Map;
+
 import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Investments.JSONHandlers.StockData;
@@ -37,13 +46,13 @@ public class Game {
     }
 
     public void NextDay() {
-        Iterator ite  = new TimeIterator(caretakers);
+        Iterator ite = new TimeIterator(caretakers);
 
         while (ite.hasNext()) {
             InvestmentCaretaker caretaker = ite.next();
-            caretaker.restoreFromMemento(day+1);
+            caretaker.restoreFromMemento(day + 1);
         }
-    
+
         day++;
 
     }
@@ -51,24 +60,39 @@ public class Game {
     public void skipDays(int number) {
         day += number;
     }
-    //debug
+    // debug
 
     public void printStockValues() {
         for (InvestmentCaretaker investmentCaretaker : caretakers) {
             System.out.println(investmentCaretaker.getInvestment().getValue());
         }
     }
-    private void initDatafromJSON() {
-            StockData data = new StockData("resources/data/akcje.json");
-            ArrayList<InvestmentCaretaker> tmp = data.getCaretakers();
 
-            for (InvestmentCaretaker investmentCaretaker : tmp) {
-                caretakers.add(investmentCaretaker);
+    public Map<String, ArrayList<Double>> getStockValuesTillDay(int day) {
+        Map<String, ArrayList<Double>> map = new HashMap<>();
+        for (InvestmentCaretaker investmentCaretaker : caretakers) {
+            MementoIterator it = new MementoIterator(investmentCaretaker, day);
+            ArrayList<Double> values = new ArrayList<Double>();
+
+            InvestmentCaretaker currentCaretaker;
+            while (it.hasNext()) {
+                currentCaretaker = it.next();
+                values.add(currentCaretaker.getInvestment().getValue());
             }
-
-            // TODO zrob to samo dla reszty inwestycji
+            map.put(currentCaretaker.getInvestment().getName(), values); // chuj tam to debugowe
+        }
+        return map;
     }
-    
 
+    private void initDatafromJSON() {
+        StockData data = new StockData("resources/data/akcje.json");
+        ArrayList<InvestmentCaretaker> tmp = data.getCaretakers();
+
+        for (InvestmentCaretaker investmentCaretaker : tmp) {
+            caretakers.add(investmentCaretaker);
+        }
+
+        // TODO zrob to samo dla reszty inwestycji
+    }
 
 }

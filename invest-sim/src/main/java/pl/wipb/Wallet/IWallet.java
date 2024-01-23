@@ -1,7 +1,11 @@
 package pl.wipb.Wallet;
 
-interface Iwallet {
-    double get_networth();
-    void sell_invs();
-    void buy_invs();    
+import pl.wipb.Investments.Investment;
+
+public interface IWallet {
+    double getNetWorth();
+
+    void sell_invs(Investment inv);
+
+    void buy_invs(Investment inv, int amount);
 }

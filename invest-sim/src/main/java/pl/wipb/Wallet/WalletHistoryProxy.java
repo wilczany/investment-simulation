@@ -1,14 +1,50 @@
 package pl.wipb.Wallet;
 
-import java.util.List;
+import java.util.ArrayList;
+import pl.wipb.Investments.Investment;
 
-public class WalletHistoryProxy {
+public class WalletHistoryProxy implements IWallet {
 
     // private implementation wallet; zmienic
-    private WalletHistory history;
-    private List<WalletHistory> historyList;
+    private Wallet implementation;
+    private ArrayList<WalletHistory> history_List;
 
-    public List<WalletHistory> getHistory() {
-        return this.historyList;
+    public WalletHistoryProxy(Wallet implementation) {
+
+        this.implementation = implementation;
+        history_List = new ArrayList<WalletHistory>();
+        history_List.add(new WalletHistory(
+                implementation.getAvaiableMoney(),
+                implementation.getNetWorth()));
+    }
+
+    public ArrayList<WalletHistory> getHistory() {
+        return this.history_List;
+    }
+
+    public double getNetWorth() {
+        return this.implementation.getNetWorth();
+    }
+
+    public void sell_invs(Investment inv) {
+        implementation.sell_invs(inv);
+
+        update_history();
+    }
+
+    public void buy_invs(Investment inv, int amount) {
+
+        implementation.buy_invs(inv, amount);
+
+        update_history();
+    }
+
+    public void update_history() {
+
+        WalletHistory wh = new WalletHistory(
+                implementation.getAvaiableMoney(),
+                implementation.getNetWorth());
+
+        history_List.add(wh);
     }
 }

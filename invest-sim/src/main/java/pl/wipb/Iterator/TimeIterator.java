@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class TimeIterator implements Iterator {
 
+    // uzywany aby przejsc przez wszystkie inwestycje i zaktualizowac je
+
     int index = 0;
 
     ArrayList<InvestmentCaretaker> caretakers;
@@ -24,9 +26,8 @@ public class TimeIterator implements Iterator {
     }
 
     public InvestmentCaretaker next() {
-        InvestmentCaretaker nxt = this.caretakers.get(index);
         index++;
-
+        InvestmentCaretaker nxt = this.caretakers.get(index);
         return nxt;
     }
 
