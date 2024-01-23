@@ -7,7 +7,7 @@ public class MementoIterator implements Iterator {
 
     // uzywaney do odczytu wartości inwestycji na przedziale poprzednuch dni
 
-    private InvestmentCaretaker caretaker;
+    private InvestmentCaretaker caretaker = null;
     private int day;
     private int index = 0;
 
@@ -26,9 +26,9 @@ public class MementoIterator implements Iterator {
         }
     }
 
-    public int debugGetDay() {
-        return this.day;
-    }
+    public int getIndex() {
+        return this.index;
+    };
 
     public InvestmentCaretaker next() {
 

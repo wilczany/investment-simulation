@@ -7,11 +7,11 @@ public class Wallet implements IWallet {
     static final double START_MONEY = 10000.0;
 
     private double net_worth;
-    private double avaiable_money;
+    private double available_money;
 
     public Wallet() {
         this.net_worth = 0;
-        this.avaiable_money = START_MONEY;
+        this.available_money = START_MONEY;
 
     }
 
@@ -19,8 +19,8 @@ public class Wallet implements IWallet {
         return this.net_worth;
     }
 
-    double getAvaiableMoney() {
-        return this.avaiable_money;
+    double getAvailableMoney() {
+        return this.available_money;
     }
 
     public void sell_invs(Investment inv) {

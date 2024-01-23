@@ -53,14 +53,22 @@ public class Game {
 
     public void nextDay() {
         Iterator ite = new TimeIterator(caretakers);
-        System.out.println("start");
 
         while (ite.hasNext()) {
+<<<<<<< Updated upstream
             System.out.println("pętla");
             InvestmentCareta    ker caretaker = ite.next();
             caretaker.restoreFromMemento(day++);
         }
         System.out.println("koniec");
+=======
+            InvestmentCaretaker caretaker = null;
+            caretaker = ite.next();
+            caretaker.restoreFromMemento(day + 1);
+            System.out.println(caretaker);
+        }
+        day++;
+>>>>>>> Stashed changes
     }
 
     public void skipDays(int number) {
@@ -104,7 +112,6 @@ public class Game {
         for (InvestmentCaretaker investmentCaretaker : tmp) {
             caretakers.add(investmentCaretaker);
         }
-
         // TODO zrob to samo dla reszty inwestycji
     }
 

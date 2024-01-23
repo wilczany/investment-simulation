@@ -45,9 +45,7 @@ public class ObligationData {
         InvestmentCaretaker caretaker = new InvestmentCaretaker(inv);
 
         for (int i = 0; i < LIMIT; i++) {
-            System.out.println((i + 1) + " " + saving_rate);
             if ((i + 1) % saving_rate == 0) {
-                System.out.println(value * intereset_rate);
                 value *= intereset_rate;
             }
             inv.setValue(value, i);

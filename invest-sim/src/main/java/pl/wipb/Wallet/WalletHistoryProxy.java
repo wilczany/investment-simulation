@@ -14,7 +14,7 @@ public class WalletHistoryProxy implements IWallet {
         this.implementation = implementation;
         history_List = new ArrayList<WalletHistory>();
         history_List.add(new WalletHistory(
-                implementation.getAvaiableMoney(),
+                implementation.getAvailableMoney(),
                 implementation.getNetWorth()));
     }
 
@@ -42,7 +42,7 @@ public class WalletHistoryProxy implements IWallet {
     public void update_history() {
 
         WalletHistory wh = new WalletHistory(
-                implementation.getAvaiableMoney(),
+                implementation.getAvailableMoney(),
                 implementation.getNetWorth());
 
         history_List.add(wh);

@@ -27,10 +27,18 @@ public class TimeIterator implements Iterator {
     }
 
     public InvestmentCaretaker next() {
+<<<<<<< Updated upstream
         index++;
         
         InvestmentCaretaker nxt = this.caretakers.get(index);
+=======
+        InvestmentCaretaker nxt = this.caretakers.get(index++);
+>>>>>>> Stashed changes
         return nxt;
+    }
+
+    public int getIndex() {
+        return this.index;
     }
 
 }
