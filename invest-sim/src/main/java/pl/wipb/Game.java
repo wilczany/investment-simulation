@@ -1,10 +1,7 @@
 package pl.wipb;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 import pl.wipb.Iterator.Iterator;
 import pl.wipb.Iterator.MementoIterator;
@@ -17,11 +14,6 @@ import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Investments.JSONHandlers.ObligationData;
 import pl.wipb.Investments.JSONHandlers.StockData;
 import pl.wipb.Iterator.TimeIterator;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.fxml.FXML;
 
 public class Game {
 

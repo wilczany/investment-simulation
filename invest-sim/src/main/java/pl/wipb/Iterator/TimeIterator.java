@@ -18,7 +18,7 @@ public class TimeIterator implements Iterator {
     }
 
     public boolean hasNext() {
-        if (this.index <= caretakers.size())
+        if (this.index < caretakers.size())
             return true;
         else {
             return false;
@@ -26,6 +26,7 @@ public class TimeIterator implements Iterator {
     }
 
     public InvestmentCaretaker next() {
+        System.out.println(index);
         InvestmentCaretaker nxt = this.caretakers.get(index++);
         return nxt;
     }

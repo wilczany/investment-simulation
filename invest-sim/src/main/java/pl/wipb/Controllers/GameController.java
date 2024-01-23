@@ -21,7 +21,9 @@ public class GameController {
 
     @FXML
     ListView<InvestmentCaretaker> caretakersList;
+    @FXML
     Button nextDayBtn, showWalletBtn;
+    @FXML
     TextField networthField, amountOwnedField, avaiableMoneyField, investmentPriceField;
 
     @FXML
@@ -30,10 +32,10 @@ public class GameController {
         investmentCaretakers = game.getInvestments();
         System.out.println(investmentCaretakers);
 
-        networthField.setText("-");
-        amountOwnedField.setText("0");
-        avaiableMoneyField.setText("�");
-        investmentPriceField.setText("---");
+        networthField.setText("networth");
+        amountOwnedField.setText("amount");
+        avaiableMoneyField.setText("avaiable");
+        investmentPriceField.setText("invest");
 
         for (InvestmentCaretaker iC : investmentCaretakers) {
             System.out.println(iC);

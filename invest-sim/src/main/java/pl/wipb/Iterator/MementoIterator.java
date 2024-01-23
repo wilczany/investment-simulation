@@ -31,7 +31,6 @@ public class MementoIterator implements Iterator {
     };
 
     public InvestmentCaretaker next() {
-
         this.caretaker.restoreFromMemento(index);
         this.index++;
 
