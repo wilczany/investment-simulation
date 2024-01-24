@@ -18,7 +18,7 @@ public class MementoIterator implements Iterator {
     }
 
     public boolean hasNext() {
-        if (this.index < this.day)
+        if (this.index <= this.day)
             return true;
         else {
             return false;

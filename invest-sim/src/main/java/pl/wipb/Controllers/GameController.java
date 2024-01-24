@@ -62,28 +62,36 @@ public class GameController {
         // new XYChart.Series<Double, Double>(FXCollections.observableArrayList(new
         // XYChart.Data<>(0.0, 1.0))));
 
-        lineChart.setVisible(true);
         System.out.println(lineChart);
 
         game.startGame();
         // graphDirector.appendChart(game.getInvestments().getFirst(), lineChart);
 
-        XYChart.Series<Double, Double> s = graphDirector.graphBuilders[0]
-                .parseCaretakerToSeries(game.getInvestments().get(3));
-
-        lineChart.getData().add(
-                s);
-
         investmentCaretakers = game.getInvestments();
-        System.out.println(investmentCaretakers);
+        // System.out.println(investmentCaretakers);
+
+        // lineChart.getData().add(new XYChart.Series<Double, Double>());
+
+        // XYChart.Series<Double, Double> s = graphDirector.graphBuilders[0]
+        // .parseCaretakerToSeries(investmentCaretakers.get(3));
+        // System.out.println("parsed caretaker:");
+        // System.out.println(s.getData());
+        // // s.getData().add(new XYChart.Data<>(1.0, 1.0));
+
+        // for (int i = 0; i < s.getData().size(); i++) {
+        // System.out.println(s.getData().get(i));
+        // lineChart.getData().get(0).getData().add(
+        // s.getData().get(i));
+        // System.out.println(lineChart.getData().get(0).getData());
+        // }
 
         refreshText();
 
         for (InvestmentCaretaker iC : investmentCaretakers) {
-            System.out.println(iC);
+            // System.out.println(iC);
             caretakersList.getItems().add(iC);
         }
-        System.out.println(caretakersList.getItems());
+        // System.out.println(caretakersList.getItems());
 
         // // debug wykres
         // Timeline updateChart = new Timeline(new KeyFrame(Duration.seconds(1),
@@ -99,12 +107,15 @@ public class GameController {
                             InvestmentCaretaker newInv) {
                         InvestmentCaretaker selected = getSelection();
                         if (selected == null) {
+                            barChart.setVisible(false);
+                            lineChart.setVisible(false);
                             investmentLabel.setText("");
                             investmentPriceField.setText("-----");
                             amountOwnedField.setText("-----");
                             buyBtn.setDisable(true);
                             sellBtn.setDisable(true);
                         } else {
+                            updateCurrentChart();
                             investmentLabel.setText(selected.getInvestment().getName());
                             investmentPriceField.setText(selected.getInvestment().getValue() + "");
                             amountOwnedField.setText(selected.getInvestment().getAmount() + "");
@@ -127,33 +138,48 @@ public class GameController {
 
     @FXML
     private void lineChartHandler(ActionEvent event) {
-        barChart.setVisible(false);
-        lineChart.setVisible(true);
-        InvestmentCaretaker selected = getSelection();
-        graphDirector.appendChart(selected, lineChart);
-        // stackPane.getChildren().add((LineChart<Double, Double>)
-        // graphDirector.buildChart(selected));
-        // LineChart<Double, Double> lChart = (LineChart) chart;
-        // lineChart.getData().clear();
-        // lineChart.getData().add(lChart.getData().getFirst());
-    }
-
-    EventHandler<ActionEvent> chartUpdater = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            Random random = new Random();
-            // add a new point to the chart
-            lineChart.getData().get(0).getData().add(
-                    new XYChart.Data<>((double) numberOfPoints++, random.nextDouble() * 1e8));
-
-            // remove the first point, because that's the left-most.
-            // lineChart.getData().getFirst().getData().remove(0);
+        if (lineChart.isVisible()) {
+            lineChart.setVisible(false);
+        } else {
+            barChart.setVisible(false);
+            graphDirector.setBuilder(0);
+            InvestmentCaretaker selected = getSelection();
+            lineChart.getData().clear();
+            graphDirector.appendChart(selected, lineChart);
+            lineChart.setVisible(true);
         }
-    };
+    }
 
     @FXML
     private void barChartHandler(ActionEvent event) {
+        if (barChart.isVisible()) {
+            barChart.setVisible(false);
+        } else {
+            lineChart.setVisible(false);
+            graphDirector.setBuilder(1);
+            InvestmentCaretaker selected = getSelection();
+            barChart.getData().clear();
+            graphDirector.appendChart(selected, barChart);
+            barChart.setVisible(true);
+        }
+    }
 
+    private void updateCurrentChart() {
+        XYChart currChart = null;
+        InvestmentCaretaker selected = getSelection();
+        if (selected == null)
+            return;
+        if (barChart.isVisible()) {
+            graphDirector.setBuilder(1);
+            currChart = barChart;
+        } else if (lineChart.isVisible()) {
+            graphDirector.setBuilder(0);
+            currChart = lineChart;
+        } else {
+            return;
+        }
+        currChart.getData().clear();
+        graphDirector.appendChart(getSelection(), currChart);
     }
 
     @FXML

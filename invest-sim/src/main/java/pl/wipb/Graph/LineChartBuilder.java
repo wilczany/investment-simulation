@@ -26,6 +26,7 @@ public class LineChartBuilder extends GraphBuilder {
         series.setName(caretaker.getInvestment().getName());
         Iterator it = new MementoIterator(caretaker, caretaker.getInvestment().getDay());
         while (it.hasNext()) {
+            System.out.println("iteruje...");
             InvestmentCaretaker nextCt = it.next();
             series.getData()
                     .add(new XYChart.Data((double) nextCt.getInvestment().getDay(), nextCt.getInvestment().getValue()));
