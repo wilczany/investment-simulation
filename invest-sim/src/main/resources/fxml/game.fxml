@@ -65,7 +65,7 @@
             <MenuItem mnemonicParsing="false" text="Nowa Gra" />
             <MenuItem mnemonicParsing="false" text="Wyświetl wyniki" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Wyjście" onAction="#exitGameHandler"/>
+            <MenuItem mnemonicParsing="false" onAction="#exitGameHandler" text="Wyjście" />
           </items>
         </Menu>
       </menus>
@@ -75,7 +75,7 @@
         <AnchorPane>
           <children>
                   <ListView fx:id="caretakersList" layoutX="17.0" layoutY="70.0" prefHeight="459.0" prefWidth="200.0" />
-                  <Button fx:id="showWalletBtn" layoutX="5.0" layoutY="33.0" mnemonicParsing="false" text="Wyświetl portfel" onAction="#showWalletHandler" />
+                  <Button fx:id="showWalletBtn" layoutX="5.0" layoutY="33.0" mnemonicParsing="false" onAction="#showWalletHandler" text="Wyświetl portfel" />
                   <Button fx:id="nextDayBtn" layoutX="117.0" layoutY="33.0" mnemonicParsing="false" onAction="#nextDayBtnHandler" text="Następny dzień" />
           </children>
         </AnchorPane>
@@ -107,27 +107,32 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane>
+        <AnchorPane SplitPane.resizableWithParent="false">
           <children>
-            <Label alignment="CENTER" fx:id="investmentLabel" layoutX="91.0" layoutY="14.0" style="&#10;" text="" textAlignment="CENTER" wrapText="false">
-                     <font>
-                <Font size="18.0" fx:id="x1" />
-                     </font>
-                     <textFill>
-                <Color red="0.624" green="0.624" blue="0.624" />
-                     </textFill></Label>
-                  <Button fx:id="buyBtn" layoutX="23.0" layoutY="477.0" mnemonicParsing="false" text="Kup" onAction="#buyHandler" />
-                  <Button fx:id="sellBtn" layoutX="145.0" layoutY="477.0" mnemonicParsing="false" text="Sprzedaj" onAction="#sellHandler" />
-                  <Button fx:id="lineChartBtn" layoutX="8.0" layoutY="371.0" mnemonicParsing="false" text="Wykres Liniowy" onAction="#lineChartHandler" />
-                  <Button fx:id="barChartBtn" layoutX="114.0" layoutY="371.0" mnemonicParsing="false" text="Wykres słupkowy" onAction="#barChartHandler" />
+                  <StackPane layoutX="104.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                  <Label fx:id="investmentLabel" alignment="CENTER" style="&#10;" text="" wrapText="false" StackPane.alignment="CENTER">
+                           <font>
+                      <Font size="18.0" fx:id="x1" />
+                           </font>
+                           <textFill>
+                      <Color red="0.624" green="0.624" blue="0.624" />
+                           </textFill>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <Button fx:id="buyBtn" layoutX="23.0" layoutY="477.0" mnemonicParsing="false" onAction="#buyHandler" text="Kup" />
+                  <Button fx:id="sellBtn" layoutX="145.0" layoutY="477.0" mnemonicParsing="false" onAction="#sellHandler" text="Sprzedaj" />
+                  <Button fx:id="lineChartBtn" layoutX="8.0" layoutY="371.0" mnemonicParsing="false" onAction="#lineChartHandler" text="Wykres Liniowy" />
+                  <Button fx:id="barChartBtn" layoutX="114.0" layoutY="371.0" mnemonicParsing="false" onAction="#barChartHandler" text="Wykres słupkowy" />
                   <Text layoutX="72.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena jednostki" textAlignment="CENTER" wrappingWidth="82.21875" />
                   <Text layoutX="49.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posiadana Ilość" textAlignment="CENTER" wrappingWidth="128.310546875" />
                   <Text layoutX="35.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dostępne środki" textAlignment="CENTER" wrappingWidth="147.51953125" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
-                  <TextField fx:id="amountOwnedField" disable="true" alignment="CENTER" layoutX="39.0" layoutY="244.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="41.0" />
-                  <TextField fx:id="availableMoneyField" disable="true" alignment="CENTER" layoutY="64.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
-                  <TextField fx:id="networthField" disable="true" alignment="CENTER" layoutX="35.0" layoutY="124.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+                  <TextField fx:id="amountOwnedField" alignment="CENTER" disable="true" layoutX="39.0" layoutY="244.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="41.0" />
+                  <TextField fx:id="availableMoneyField" alignment="CENTER" disable="true" layoutY="64.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+                  <TextField fx:id="networthField" alignment="CENTER" disable="true" layoutX="35.0" layoutY="124.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
                   <Text layoutX="82.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net worth" textAlignment="CENTER" />
-                  <TextField fx:id="investmentPriceField" disable="true" alignment="CENTER" layoutX="41.0" layoutY="186.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+                  <TextField fx:id="investmentPriceField" alignment="CENTER" disable="true" layoutX="41.0" layoutY="186.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
           </children>
         </AnchorPane>
       </items>

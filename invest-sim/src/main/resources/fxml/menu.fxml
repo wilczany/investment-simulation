@@ -8,8 +8,8 @@
 <!-- może wkurwiony szukając błędu natrafisz na instrukcje... -->
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="80.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-image: url(https://raw.githubusercontent.com/wilczany/RezerwacjaBiletow-projekt/main/background_resize.jpg);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.wipb.Controllers.MainController">
     <children>
-        <Button layoutX="388.0" layoutY="80.0" mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="124.0" text="Nowa gra" />
-        <Button layoutX="371.0" layoutY="275.0" mnemonicParsing="false" onAction="#openHighScore" prefHeight="50.0" prefWidth="158.0" text="High Score" />
-        <Button layoutX="400.0" layoutY="447.0" mnemonicParsing="false" onAction="#exit" prefHeight="44.0" prefWidth="79.0" text="Wyjście" />
+        <Button layoutX="389.0" layoutY="81.0" mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="124.0" text="Nowa gra" />
+        <Button layoutX="372.0" layoutY="275.0" mnemonicParsing="false" onAction="#openHighScore" prefHeight="50.0" prefWidth="158.0" text="High Score" />
+        <Button layoutX="411.0" layoutY="451.0" mnemonicParsing="false" onAction="#exit" prefHeight="44.0" prefWidth="79.0" text="Wyjście" />
     </children>
 </Pane>

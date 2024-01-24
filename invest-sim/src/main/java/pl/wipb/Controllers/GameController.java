@@ -143,7 +143,7 @@ public class GameController {
         public void handle(ActionEvent event) {
             Random random = new Random();
             // add a new point to the chart
-            lineChart.getData().getFirst().getData().add(
+            lineChart.getData().get(0).getData().add(
                     new XYChart.Data<>((double) numberOfPoints++, random.nextDouble() * 1e8));
 
             // remove the first point, because that's the left-most.
