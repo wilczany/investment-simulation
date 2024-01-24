@@ -20,4 +20,16 @@ public class MainController {
 
     }
 
+    public void startGame() {
+        System.out.println("stackGame");
+    }
+
+    public void exit(){
+        System.out.println("exit");
+    }
+
+    public void openHighScore(){
+        System.out.println("openHighScore");
+    }
+
 }
