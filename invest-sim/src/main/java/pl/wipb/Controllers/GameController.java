@@ -165,6 +165,7 @@ public class GameController extends Controller{
     // context menu
     @FXML
     public void exitGameHandler(ActionEvent event) {
+        Game.getInstance().restart();
         back();
     }
 
