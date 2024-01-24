@@ -14,7 +14,7 @@ public class LineChartBuilder extends GraphBuilder {
     public Chart drawGraph(InvestmentCaretaker caretaker) {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-        final LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        final LineChart<Double, Double> lineChart = new LineChart(xAxis, yAxis);
 
         lineChart.getData().add(parseCaretakerToSeries(caretaker));
 
@@ -22,19 +22,20 @@ public class LineChartBuilder extends GraphBuilder {
     }
 
     public XYChart.Series parseCaretakerToSeries(InvestmentCaretaker caretaker) {
-        XYChart.Series<Number, Number> series = new XYChart.Series();
+        XYChart.Series<Double, Double> series = new XYChart.Series();
         series.setName(caretaker.getInvestment().getName());
         Iterator it = new MementoIterator(caretaker, caretaker.getInvestment().getDay());
         while (it.hasNext()) {
             InvestmentCaretaker nextCt = it.next();
-            series.getData().add(new XYChart.Data(nextCt.getInvestment().getDay(), nextCt.getInvestment().getValue()));
+            series.getData()
+                    .add(new XYChart.Data((double) nextCt.getInvestment().getDay(), nextCt.getInvestment().getValue()));
         }
 
         return series;
     }
 
     public boolean populateGraph(InvestmentCaretaker caretaker, Chart chart) {
-        LineChart<Number, Number> lineChart = (LineChart<Number, Number>) chart;
+        LineChart<Double, Double> lineChart = (LineChart<Double, Double>) chart;
         XYChart.Series series = parseCaretakerToSeries(caretaker);
         lineChart.getData().add(series);
 

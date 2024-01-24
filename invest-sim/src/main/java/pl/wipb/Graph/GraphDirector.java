@@ -12,7 +12,7 @@ import javafx.scene.chart.Chart;
 // String jako nazwa dla serii danych, ArrayList<double> jako wartości do przedstawienia na wykresie
 
 public class GraphDirector {
-    private GraphBuilder graphBuilders[] = { new LineChartBuilder(), new BarChartBuilder() };
+    public GraphBuilder graphBuilders[] = { new LineChartBuilder(), new BarChartBuilder() };
     // private Chart chart = null;
     private int currBuilder = 0;
 

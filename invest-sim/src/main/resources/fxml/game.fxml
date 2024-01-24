@@ -109,12 +109,12 @@
         </ScrollPane>
         <AnchorPane>
           <children>
-            <Label alignment="CENTER" layoutX="91.0" layoutY="14.0" style="&#10;" text="XDD" textAlignment="CENTER" wrapText="false">
+            <Label alignment="CENTER" fx:id="investmentLabel" layoutX="91.0" layoutY="14.0" style="&#10;" text="" textAlignment="CENTER" wrapText="false">
                      <font>
                 <Font size="18.0" fx:id="x1" />
                      </font>
                      <textFill>
-                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
+                <Color red="0.624" green="0.624" blue="0.624" />
                      </textFill></Label>
                   <Button fx:id="buyBtn" layoutX="23.0" layoutY="477.0" mnemonicParsing="false" text="Kup" onAction="#buyHandler" />
                   <Button fx:id="sellBtn" layoutX="145.0" layoutY="477.0" mnemonicParsing="false" text="Sprzedaj" onAction="#sellHandler" />

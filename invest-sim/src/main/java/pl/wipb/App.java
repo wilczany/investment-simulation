@@ -42,4 +42,33 @@ public class App extends Application {
         // }
     }
 
+    // public void switchScene(String fxmlFile)
+    // {
+
+    // FXMLLoader loader = new FXMLLoader(getClass()
+    // .getResource(fxmlFile));
+    // Parent root;
+    // try
+    // {
+    // root = (Parent)loader.load();
+    // if(fxmlFile.equals("calculator.fxml"))
+    // {
+    // BasicCalculatorView controller = (BasicCalculatorView)loader.getController();
+    // controller.setModel(new BasicCalculatorModelTest(controller));
+    // controller.setLogic(this);
+    // }
+    // else if(fxmlFile.equals("TestSwitch.fxml"))
+    // {
+    // TestSwitch controller = (TestSwitch)loader.getController();
+    // controller.setLogic(this);
+    // }
+    // this.stage.setScene(new Scene(root));
+    // }
+    // catch (IOException e)
+    // {
+    // e.printStackTrace();
+    // }
+
+    // }
+
 }
