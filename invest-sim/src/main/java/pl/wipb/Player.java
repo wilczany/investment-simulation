@@ -1,5 +1,7 @@
 package pl.wipb;
 
+import java.util.ArrayList;
+
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Wallet.*;
 
@@ -21,6 +23,12 @@ public class Player {
 
     public double getAvailableMoney() {
         return this.wallet.getAvailableMoney();
+    }
+
+    public ArrayList<WalletHistory> getHistory() {
+        // nie miałem pomysłu jak inaczej się do tego dostać...
+        WalletHistoryProxy w = (WalletHistoryProxy) this.wallet;
+        return w.getHistory();
     }
 
     public void SkipDays(int time) /// SkipTime() ?

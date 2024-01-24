@@ -101,6 +101,8 @@ public class GameController extends Controller{
     @FXML
     private void nextDayBtnHandler(ActionEvent event) {
         game.nextDay();
+        System.out.println(player.getHistory());
+        System.out.println(player.getHistory().getLast().getAvailableMoney());
         refreshList();
     }
 
