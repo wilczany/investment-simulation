@@ -58,14 +58,14 @@
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.wipb.Controllers.GameController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Gra">
           <items>
             <MenuItem mnemonicParsing="false" text="Nowa Gra" />
             <MenuItem mnemonicParsing="false" text="Wyświetl wyniki" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Wyjście" />
+            <MenuItem mnemonicParsing="false" text="Wyjście" onAction="#exitGameHandler"/>
           </items>
         </Menu>
       </menus>
@@ -75,7 +75,7 @@
         <AnchorPane>
           <children>
                   <ListView fx:id="caretakersList" layoutX="17.0" layoutY="70.0" prefHeight="459.0" prefWidth="200.0" />
-                  <Button fx:id="showWalletBtn" layoutX="5.0" layoutY="33.0" mnemonicParsing="false" text="Wyświetl portfel" />
+                  <Button fx:id="showWalletBtn" layoutX="5.0" layoutY="33.0" mnemonicParsing="false" text="Wyświetl portfel" onAction="#showWalletHandler" />
                   <Button fx:id="nextDayBtn" layoutX="117.0" layoutY="33.0" mnemonicParsing="false" onAction="#nextDayBtnHandler" text="Następny dzień" />
           </children>
         </AnchorPane>
@@ -83,17 +83,17 @@
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
               <children>
-                        <StackPane layoutX="9.0" layoutY="10.0" prefHeight="530.0" prefWidth="412.0">
+                        <StackPane fx:id="stackPane" layoutX="9.0" layoutY="10.0" prefHeight="530.0" prefWidth="412.0">
                            <children>
-                              <LineChart visible="false">
+                              <LineChart fx:id="lineChart" visible="false">
                                 <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
+                                  <NumberAxis side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
                                   <NumberAxis side="LEFT" />
                                 </yAxis>
                               </LineChart>
-                              <BarChart visible="false">
+                              <BarChart fx:id="barChart" visible="false">
                                 <xAxis>
                                   <CategoryAxis side="BOTTOM" />
                                 </xAxis>
@@ -116,15 +116,15 @@
                      <textFill>
                 <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
                      </textFill></Label>
-                  <Button layoutX="23.0" layoutY="477.0" mnemonicParsing="false" text="Kup" />
-                  <Button layoutX="145.0" layoutY="477.0" mnemonicParsing="false" text="Sprzedaj" />
-                  <Button layoutX="8.0" layoutY="371.0" mnemonicParsing="false" text="Wykres Liniowy" />
-                  <Button layoutX="114.0" layoutY="371.0" mnemonicParsing="false" text="Wykres słupkowy" />
+                  <Button fx:id="buyBtn" layoutX="23.0" layoutY="477.0" mnemonicParsing="false" text="Kup" onAction="#buyHandler" />
+                  <Button fx:id="sellBtn" layoutX="145.0" layoutY="477.0" mnemonicParsing="false" text="Sprzedaj" onAction="#sellHandler" />
+                  <Button fx:id="lineChartBtn" layoutX="8.0" layoutY="371.0" mnemonicParsing="false" text="Wykres Liniowy" onAction="#lineChartHandler" />
+                  <Button fx:id="barChartBtn" layoutX="114.0" layoutY="371.0" mnemonicParsing="false" text="Wykres słupkowy" onAction="#barChartHandler" />
                   <Text layoutX="72.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena jednostki" textAlignment="CENTER" wrappingWidth="82.21875" />
                   <Text layoutX="49.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posiadana Ilość" textAlignment="CENTER" wrappingWidth="128.310546875" />
                   <Text layoutX="35.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dostępne środki" textAlignment="CENTER" wrappingWidth="147.51953125" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
                   <TextField fx:id="amountOwnedField" disable="true" alignment="CENTER" layoutX="39.0" layoutY="244.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="41.0" />
-                  <TextField fx:id="avaiableMoneyField" disable="true" alignment="CENTER" layoutY="64.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+                  <TextField fx:id="availableMoneyField" disable="true" alignment="CENTER" layoutY="64.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
                   <TextField fx:id="networthField" disable="true" alignment="CENTER" layoutX="35.0" layoutY="124.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
                   <Text layoutX="82.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net worth" textAlignment="CENTER" />
                   <TextField fx:id="investmentPriceField" disable="true" alignment="CENTER" layoutX="41.0" layoutY="186.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />

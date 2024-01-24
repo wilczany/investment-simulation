@@ -50,7 +50,6 @@ public class Game {
             InvestmentCaretaker caretaker = null;
             caretaker = ite.next();
             caretaker.restoreFromMemento(day + 1);
-            System.out.println(caretaker);
         }
         day++;
     }

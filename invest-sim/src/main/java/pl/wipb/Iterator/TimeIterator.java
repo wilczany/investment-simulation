@@ -8,6 +8,9 @@ public class TimeIterator implements Iterator {
 
     // uzywany aby przejsc przez wszystkie inwestycje i zaktualizowac je
 
+    // potencjalna zmiana nazwy, director uzywa w jednej funkcji
+    // prawdopodobnie niepotrzeba tho
+
     int index = 0;
 
     ArrayList<InvestmentCaretaker> caretakers;
@@ -26,7 +29,6 @@ public class TimeIterator implements Iterator {
     }
 
     public InvestmentCaretaker next() {
-        System.out.println(index);
         InvestmentCaretaker nxt = this.caretakers.get(index++);
         return nxt;
     }

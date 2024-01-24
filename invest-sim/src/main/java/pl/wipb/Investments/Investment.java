@@ -10,10 +10,26 @@ public abstract class Investment {
     String name;
     double value;
     int day; // state
+    int amountOwned = 0;
 
     public Investment(String name) {
-
         this.name = name;
+    }
+
+    public void addAmount(int amount) {
+        this.amountOwned += amount;
+    }
+
+    public void substractAmount(int amount) {
+        this.amountOwned -= amount;
+    }
+
+    public int getAmount() {
+        return this.amountOwned;
+    }
+
+    public int getDay() {
+        return this.day;
     }
 
     public void setValue(double value, int day) {

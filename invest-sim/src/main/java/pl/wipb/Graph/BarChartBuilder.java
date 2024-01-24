@@ -1,40 +1,41 @@
 package pl.wipb.Graph;
 
-import java.util.ArrayList;
-
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.Chart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import pl.wipb.Investments.InvestmentCaretaker;
+import pl.wipb.Iterator.Iterator;
+import pl.wipb.Iterator.MementoIterator;
 
 public class BarChartBuilder extends GraphBuilder {
-    public Chart drawGraph(String name, ArrayList<Double> values) {
+    public Chart drawGraph(InvestmentCaretaker caretaker) {
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
-        final BarChart<String, Number> barChart = new BarChart(xAxis, yAxis);
+        final BarChart<String, Number> barChart = new BarChart<String, Number>(xAxis, yAxis);
 
-        XYChart.Series series = parseValuesToSeries(name, values);
-
-        // Scene scene = new Scene(barChart, 800, 600);
-        barChart.getData().add(series);
+        barChart.getData().add(parseCaretakerToSeries(caretaker));
 
         return barChart;
     }
 
-    public XYChart.Series parseValuesToSeries(String name, ArrayList<Double> values) {
+    public XYChart.Series parseCaretakerToSeries(InvestmentCaretaker caretaker) {
         XYChart.Series<String, Number> series = new XYChart.Series();
-        series.setName(name);
-        for (int i = 0; i < values.size(); i++) {
-            series.getData().add(new XYChart.Data((i + 1) + "", values.get(i)));
+        series.setName(caretaker.getInvestment().getName());
+        Iterator it = new MementoIterator(caretaker, caretaker.getInvestment().getDay());
+        while (it.hasNext()) {
+            InvestmentCaretaker nextCt = it.next();
+            series.getData()
+                    .add(new XYChart.Data(nextCt.getInvestment().getDay() + "", nextCt.getInvestment().getValue()));
         }
+
         return series;
     }
 
-    public boolean populateGraph(String name, ArrayList<Double> values, Chart chart) {
+    public boolean populateGraph(InvestmentCaretaker caretaker, Chart chart) {
         BarChart<String, Number> barChart = (BarChart<String, Number>) chart;
-        XYChart.Series series = parseValuesToSeries(name, values);
+        XYChart.Series series = parseCaretakerToSeries(caretaker);
         barChart.getData().add(series);
 
         return true;

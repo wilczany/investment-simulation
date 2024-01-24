@@ -1,52 +1,51 @@
 package pl.wipb.Graph;
 
-import pl.wipb.Game;
+import pl.wipb.Investments.InvestmentCaretaker;
+import pl.wipb.Iterator.Iterator;
+import pl.wipb.Iterator.TimeIterator;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.chart.Chart;
 
 // dane do wykresów powinny być przekazywane w formacie HashMap<String, ArrayList<Double>;
 // String jako nazwa dla serii danych, ArrayList<double> jako wartości do przedstawienia na wykresie
 
-public class GraphDirector extends Application {
-    private Map<String, ArrayList<Double>> stockData;
-    private Chart chart = null;
-    private int builder = 0;
+public class GraphDirector {
+    private GraphBuilder graphBuilders[] = { new LineChartBuilder(), new BarChartBuilder() };
+    // private Chart chart = null;
+    private int currBuilder = 0;
 
-    @Override
-    public void start(Stage stage) {
-        Game game = new Game();
-        GraphBuilder graphBuilders[] = { new LineChartBuilder(), new BarChartBuilder() };
-
-        // game.StartGame();
-
-        this.stockData = game.getStockValuesTillDay(10);
-
-        stockData.forEach((key, values) -> {
-            System.out.println(key + values);
-            if (chart == null) {
-                this.chart = graphBuilders[builder].drawGraph(key, values);
-            } else {
-                graphBuilders[builder].populateGraph(key, values, chart);
-            }
-        });
-
-        Scene charts = new Scene(chart, 800, 600);
-
-        stage.setScene(charts);
-        stage.show();
+    public void setBuilder(int num) {
+        if (num < 0)
+            num = 0;
+        if (num > 1)
+            num = 1;
+        this.currBuilder = num;
     }
 
-    public static void main(String[] args) {
-        // System.out.println("test");
-        // Game game = new Game();
-        // game.StartGame();
+    public Chart buildChart(InvestmentCaretaker investment) {
+        Chart chart;
+        chart = graphBuilders[currBuilder].drawGraph(investment);
 
-        launch(args);
+        return chart;
     }
+
+    public Chart buildMultiChart(ArrayList<InvestmentCaretaker> investments) {
+        Chart chart;
+        Iterator it = new TimeIterator(investments);
+
+        chart = graphBuilders[currBuilder].drawGraph(it.next());
+        while (it.hasNext()) {
+            graphBuilders[currBuilder].populateGraph(it.next(), chart);
+        }
+
+        return chart;
+    }
+
+    public void appendChart(InvestmentCaretaker investment, Chart chart) {
+        graphBuilders[currBuilder].populateGraph(investment, chart);
+    }
+
+    // public void appendCharts(){} ?
 }

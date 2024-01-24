@@ -1,7 +1,6 @@
 package pl.wipb.Iterator;
 
 import pl.wipb.Investments.InvestmentCaretaker;
-import pl.wipb.Investments.Investment;
 
 public class MementoIterator implements Iterator {
 

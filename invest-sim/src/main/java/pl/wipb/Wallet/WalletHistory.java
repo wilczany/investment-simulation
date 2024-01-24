@@ -2,20 +2,19 @@ package pl.wipb.Wallet;
 
 public class WalletHistory {
     private double net_worth;
-    private double avaiable_money;
+    private double available_money;
 
-    protected WalletHistory(double avaiable_money, double net_worth) {
+    protected WalletHistory(double available_money, double net_worth) {
         this.net_worth = net_worth;
-        this.avaiable_money = avaiable_money;
-
+        this.available_money = available_money;
     }
 
     public double getValue() {
         return net_worth;
     }
 
-    public double getAvaibleMoney() {
-        return avaiable_money;
+    public double getAvailableMoney() {
+        return available_money;
     }
 
 }
