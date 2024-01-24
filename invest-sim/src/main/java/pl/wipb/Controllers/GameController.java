@@ -57,47 +57,15 @@ public class GameController extends Controller{
 
     @FXML
     void initialize() {
-
-        // lineChart.getData().add(
-        // new XYChart.Series<Double, Double>(FXCollections.observableArrayList(new
-        // XYChart.Data<>(0.0, 1.0))));
-
-        System.out.println(lineChart);
-
         game.startGame();
-        // graphDirector.appendChart(game.getInvestments().getFirst(), lineChart);
 
         investmentCaretakers = game.getInvestments();
-        // System.out.println(investmentCaretakers);
-
-        // lineChart.getData().add(new XYChart.Series<Double, Double>());
-
-        // XYChart.Series<Double, Double> s = graphDirector.graphBuilders[0]
-        // .parseCaretakerToSeries(investmentCaretakers.get(3));
-        // System.out.println("parsed caretaker:");
-        // System.out.println(s.getData());
-        // // s.getData().add(new XYChart.Data<>(1.0, 1.0));
-
-        // for (int i = 0; i < s.getData().size(); i++) {
-        // System.out.println(s.getData().get(i));
-        // lineChart.getData().get(0).getData().add(
-        // s.getData().get(i));
-        // System.out.println(lineChart.getData().get(0).getData());
-        // }
 
         refreshText();
 
         for (InvestmentCaretaker iC : investmentCaretakers) {
-            // System.out.println(iC);
             caretakersList.getItems().add(iC);
         }
-        // System.out.println(caretakersList.getItems());
-
-        // // debug wykres
-        // Timeline updateChart = new Timeline(new KeyFrame(Duration.seconds(1),
-        // chartUpdater));
-        // updateChart.setCycleCount(Timeline.INDEFINITE);
-        // updateChart.play();
 
         // listener na wybraną inwestycję
         caretakersList.getSelectionModel().selectedItemProperty()
