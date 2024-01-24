@@ -44,7 +44,7 @@ public class Player {
         this.wallet.buy_invs(inv, amount);
     }
 
-    // public void UpdateWallet() { ^ zamiast tego?
-
-    // }
+    public void next_day() {
+        this.wallet.next_day();
+    }
 }

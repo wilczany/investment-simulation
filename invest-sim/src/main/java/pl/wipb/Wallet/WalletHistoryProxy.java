@@ -9,13 +9,16 @@ public class WalletHistoryProxy implements IWallet {
     private Wallet implementation;
     private ArrayList<WalletHistory> history_List;
 
+    private WalletHistory wh;
+
     public WalletHistoryProxy(Wallet implementation) {
 
         this.implementation = implementation;
         history_List = new ArrayList<WalletHistory>();
-        history_List.add(new WalletHistory(
+
+        this.wh = new WalletHistory(
                 implementation.getAvailableMoney(),
-                implementation.getNetWorth()));
+                implementation.getNetWorth());
     }
 
     public ArrayList<WalletHistory> getHistory() {
@@ -33,22 +36,30 @@ public class WalletHistoryProxy implements IWallet {
     public void sell_invs(InvestmentCaretaker inv, int amount) {
         implementation.sell_invs(inv, amount);
 
-        update_history();
+        update_wallet_history();
     }
 
     public void buy_invs(InvestmentCaretaker inv, int amount) {
 
         implementation.buy_invs(inv, amount);
 
-        update_history();
+        update_wallet_history();
     }
 
-    public void update_history() {
+    public void update_wallet_history() {
 
-        WalletHistory wh = new WalletHistory(
+        wh.setNetWorth(implementation.getNetWorth());
+        wh.setAvailableMoney(implementation.getAvailableMoney());
+    }
+
+    public void next_day() { // aka next_day
+        history_List.add(wh);
+
+        implementation.next_day();
+
+        wh = new WalletHistory(
                 implementation.getAvailableMoney(),
                 implementation.getNetWorth());
 
-        history_List.add(wh);
     }
 }

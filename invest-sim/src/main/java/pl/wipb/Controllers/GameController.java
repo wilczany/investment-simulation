@@ -18,20 +18,19 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 import pl.wipb.Game;
 import pl.wipb.Player;
 import pl.wipb.Command.Command;
 import pl.wipb.Graph.GraphDirector;
 import pl.wipb.Investments.InvestmentCaretaker;
+import pl.wipb.Wallet.WalletHistory;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-public class GameController extends Controller{
+public class GameController extends Controller {
     Game game = Game.getInstance();
-    // TO-DO player ma byc uzywany z Game (spojnosc z UMLem)
+    // TODO player ma byc uzywany z Game (spojnosc z UMLem), przejrzyc wszystkie
+    // uzycia
     Player player = new Player("testowy"); // przekazywanie z menu? kontroler ekranu tworzenia nowego gracza?
     ArrayList<InvestmentCaretaker> investmentCaretakers;
     GraphDirector graphDirector = new GraphDirector();
@@ -54,6 +53,8 @@ public class GameController extends Controller{
     StackPane stackPane;
     @FXML
     Label investmentLabel;
+
+    // TODO refresh po ponownym wejściu
 
     @FXML
     void initialize() {
@@ -101,9 +102,10 @@ public class GameController extends Controller{
     @FXML
     private void nextDayBtnHandler(ActionEvent event) {
         game.nextDay();
-        System.out.println(player.getHistory());
-        System.out.println(player.getHistory().getLast().getAvailableMoney());
+        player.next_day();
+
         refreshList();
+        refreshText();
     }
 
     @FXML
@@ -174,6 +176,12 @@ public class GameController extends Controller{
     // wykres historii portfela
     @FXML
     private void showWalletHandler(ActionEvent event) {
+        ArrayList<WalletHistory> history = player.getHistory();
+        int d = -1;
+        // TODO iterator dla historii
+        for (int i = 0; i < history.size(); i++) {
+            // history.get(i).
+        }
     }
 
     private void refreshList() {
@@ -200,10 +208,11 @@ public class GameController extends Controller{
                 return;
             }
             if (selected.getInvestment().getValue() > player.getAvailableMoney()) { // value * kupowana ilość
-                // popup o niedoborze pieniedzy?
+                // TODO informacja dla gracza o niedoborze pieniędzy
                 return;
             }
             player.buy_invs(selected, 1);
+
             refreshText();
         }
     }
@@ -216,7 +225,7 @@ public class GameController extends Controller{
                 return;
             }
             if (selected.getInvestment().getAmount() <= 0) { // value * kupowana ilość
-                // popup o braku aktywów?
+                // TODO informacja dla gracza o braku aktywów
                 return;
             }
             player.sell_invs(selected, 1);

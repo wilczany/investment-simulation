@@ -10,4 +10,6 @@ public interface IWallet {
     void sell_invs(InvestmentCaretaker inv, int amount);
 
     void buy_invs(InvestmentCaretaker inv, int amount);
+
+    void next_day();
 }

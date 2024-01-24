@@ -9,6 +9,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>invest-sim</name>
+  <url>http://www.beerhub.pl/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
