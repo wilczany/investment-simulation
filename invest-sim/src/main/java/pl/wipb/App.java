@@ -16,8 +16,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         FXMLLoader fxml = null;
-        fxml = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
+        // fxml = new FXMLLoader(getClass().getResource("/fxml/menu.fxml"));
+        fxml = new FXMLLoader(getClass().getResource("/fxml/main-screen.fxml"));
         try {
+        
             Scene scene = new Scene(fxml.load());
 
             stage.setTitle("Portfel inwestycyjny");
@@ -27,7 +29,9 @@ public class App extends Application {
             stage.show();
 
         } catch (IOException e) {
-            System.err.println(e);
+            e.printStackTrace();
+            System.out.println(e.getCause());
+            System.exit(1);
         }
     }
 

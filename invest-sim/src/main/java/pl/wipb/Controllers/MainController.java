@@ -1,55 +1,49 @@
 package pl.wipb.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.MenuBar;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
+
 import java.io.IOException;
 
 public class MainController {
+
+    
+
     @FXML
-    private Pane mainPane;
+    private StackPane mainStackPane;
+
 
     @FXML
     public void initialize() {
-
+        
+        goToMenu();
     }
 
-    @FXML
-    public void setScreen(Parent pane) {
 
-        mainPane.getChildren().clear();
-        mainPane.getChildren().add(pane);
-
-    }
-
-    @FXML
-    public void startGame() {
-        FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("/fxml/ObslugaKlientow.fxml"));
-        Parent root = null;
-        GameController gameController = null;
+    public void goToMenu() {
+        FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("/fxml/menu.fxml"));
+        Parent pane = null;
+        
         try {
-            root = fxml.load();
+            pane = fxml.load();
+            
         } catch (IOException e) {
             e.printStackTrace();
+            
         }
-        gameController = fxml.getController();
-
-        // gameController.setMainController(mainController);
-        // mainController.setScreen(root);
+        
+        MenuController menu = fxml.getController();
+        menu.setMainController(this);
+        setScreen(pane);
     }
 
-    @FXML
-    public void exit() {
-        Stage stage = (Stage) mainPane.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void openHighScore() {
-        System.out.println("openHighScore");
+    public void setScreen(Parent pane) {
+        
+        mainStackPane.getChildren().clear();
+        mainStackPane.getChildren().add(pane);
+        
     }
 
 }

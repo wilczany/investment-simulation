@@ -29,7 +29,7 @@ import pl.wipb.Investments.InvestmentCaretaker;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameController {
+public class GameController extends Controller{
     Game game = Game.getInstance();
     // TO-DO player ma byc uzywany z Game (spojnosc z UMLem)
     Player player = new Player("testowy"); // przekazywanie z menu? kontroler ekranu tworzenia nowego gracza?
@@ -197,8 +197,7 @@ public class GameController {
     // context menu
     @FXML
     public void exitGameHandler(ActionEvent event) {
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        stage.close();
+        back();
     }
 
     // wykres historii portfela
