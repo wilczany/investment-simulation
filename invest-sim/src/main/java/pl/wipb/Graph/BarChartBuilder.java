@@ -47,6 +47,7 @@ public class BarChartBuilder extends GraphBuilder {
 
     public XYChart.Series parseArrayListDoubleToSeries(ArrayList<Double> values) {
         XYChart.Series<String, Number> series = new XYChart.Series();
+        series.setName("Wartość aktywów gracza");
         for (int i = 0; i < values.size(); i++) {
             series.getData()
                     .add(new XYChart.Data(i + "", values.get(i)));

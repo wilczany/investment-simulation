@@ -35,6 +35,7 @@ public class LineChartBuilder extends GraphBuilder {
 
     public XYChart.Series parseCaretakerToSeries(InvestmentCaretaker caretaker) {
         XYChart.Series<Double, Double> series = new XYChart.Series();
+        series.setName("Wartość aktywów gracza");
         series.setName(caretaker.getInvestment().getName());
         Iterator it = new MementoIterator(caretaker, caretaker.getInvestment().getDay());
         while (it.hasNext()) {
@@ -48,6 +49,7 @@ public class LineChartBuilder extends GraphBuilder {
 
     public XYChart.Series parseArrayListDoubleToSeries(ArrayList<Double> values) {
         XYChart.Series<Double, Double> series = new XYChart.Series();
+        series.setName("Wartość aktywów gracza");
         for (int i = 0; i < values.size(); i++) {
             series.getData().add(new XYChart.Data((double) i, values.get(i)));
         }

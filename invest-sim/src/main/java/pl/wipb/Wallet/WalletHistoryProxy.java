@@ -25,12 +25,20 @@ public class WalletHistoryProxy implements IWallet {
         return this.history_List;
     }
 
+    public WalletHistory getCurrentHistory() {
+        return this.wh;
+    }
+
     public double getNetWorth() {
         return this.implementation.getNetWorth();
     }
 
     public double getAvailableMoney() {
         return this.implementation.getAvailableMoney();
+    }
+
+    public double getTotal() {
+        return this.implementation.getTotal();
     }
 
     public void sell_invs(InvestmentCaretaker inv, int amount) {

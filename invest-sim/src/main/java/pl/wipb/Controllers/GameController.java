@@ -1,15 +1,10 @@
 package pl.wipb.Controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.Chart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
@@ -22,27 +17,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.StackPane;
 import pl.wipb.Game;
-import pl.wipb.Player;
 import pl.wipb.Command.Command;
 import pl.wipb.Graph.GraphDirector;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Wallet.WalletHistory;
+import pl.wipb.Wallet.WalletHistoryProxy;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class GameController extends Controller {
     Game game = Game.getInstance();
-    // TODO player ma byc uzywany z Game (spojnosc z UMLem), przejrzyc wszystkie
-    // uzycia
-    Player player; // przekazywanie z menu? kontroler ekranu tworzenia nowego gracza?
-    String name;
+    boolean walletChart = false;
     ArrayList<InvestmentCaretaker> investmentCaretakers;
     GraphDirector graphDirector = new GraphDirector();
 
     int numberOfPoints = 0;
-
 
     @FXML
     ListView<InvestmentCaretaker> caretakersList;
@@ -61,42 +51,32 @@ public class GameController extends Controller {
     @FXML
     Label investmentLabel;
 
-    // TODO refresh po ponownym wejściu
-
-
     @FXML
     void initialize() {
-
-        // xdd
-        String tmp;
-        TextInputDialog dialog = new TextInputDialog();    
+        String name;
+        TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Wprowadź nazwę gracza");
-        
 
         while (true) {
-        Optional<String> result = dialog.showAndWait();
-        TextField input = dialog.getEditor();
-        
-        
+            Optional<String> result = dialog.showAndWait();
+            TextField input = dialog.getEditor();
 
-        if (!result.isPresent() || input.getText() == null || input.getText().trim().isEmpty()) {
-            
-            Alert al = new Alert(AlertType.ERROR);
-            al.setTitle("Błąd");
-            al.setContentText("Należy podać nazwę gracza");
-            al.showAndWait();
-            
+            if (!result.isPresent() || input.getText() == null || input.getText().trim().isEmpty()) {
+
+                Alert al = new Alert(AlertType.ERROR);
+                al.setTitle("Błąd");
+                al.setContentText("Należy podać nazwę gracza");
+                al.showAndWait();
+
+            } else {
+                name = input.getText();
+                System.out.println("Nazwa gracza: " + name);
+                // startGame(name);
+                break;
+            }
         }
-        else {
-            tmp = input.getText();
-            System.out.println("Nazwa gracza: " + tmp);
-            // startGame(name);
-            break;
-        }
-        }
-        
-        player = new Player("testowy");
-        game.startGame();
+
+        game.startGame(name);
 
         investmentCaretakers = game.getInvestments();
 
@@ -140,14 +120,17 @@ public class GameController extends Controller {
     @FXML
     private void nextDayBtnHandler(ActionEvent event) {
         game.nextDay();
-        player.next_day();
+        game.getPlayer().next_day();
 
         refreshList();
         refreshText();
+        hideCharts();
     }
 
     @FXML
     private void lineChartHandler(ActionEvent event) {
+        if (getSelection() == null)
+            return;
         if (lineChart.isVisible()) {
             lineChart.setVisible(false);
         } else {
@@ -162,6 +145,8 @@ public class GameController extends Controller {
 
     @FXML
     private void barChartHandler(ActionEvent event) {
+        if (getSelection() == null)
+            return;
         if (barChart.isVisible()) {
             barChart.setVisible(false);
         } else {
@@ -172,6 +157,7 @@ public class GameController extends Controller {
             graphDirector.appendChart(selected, barChart);
             barChart.setVisible(true);
         }
+
     }
 
     private void updateCurrentChart() {
@@ -214,16 +200,20 @@ public class GameController extends Controller {
     // wykres historii portfela
     @FXML
     private void showWalletHandler(ActionEvent event) {
-        ArrayList<WalletHistory> history = player.getHistory();
+        ArrayList<WalletHistory> history = game.getPlayer().getHistory();
         System.out.println("historia");
         // TODO iterator dla historii
         ArrayList<Double> sums = new ArrayList<Double>();
 
         for (int i = 0; i < history.size(); i++) {
             sums.add(history.get(i).getAvailableMoney() + history.get(i).getNetWorth());
-            // sums.add(player.) dostac sie do portfela(proxy) w graczu i sciagnac aktualny
-            // stan historii
         }
+
+        // brudny kod !!!
+        WalletHistoryProxy w = (WalletHistoryProxy) game.getPlayer().getWallet();
+        sums.add(w.getCurrentHistory().getTotal());
+
+        // caretakersList.getSelectionModel().clearSelection();
 
         XYChart chart = lineChart;
         graphDirector.setBuilder(0);
@@ -232,7 +222,16 @@ public class GameController extends Controller {
             chart = barChart;
         }
 
+        chart.getData().clear();
         graphDirector.appendChart(sums, chart);
+        chart.setVisible(true);
+    }
+
+    private void infoDialog(String text) {
+        Alert al = new Alert(AlertType.INFORMATION);
+        al.setTitle("Nieprawidłowa akcja");
+        al.setContentText(text);
+        al.showAndWait();
     }
 
     private void refreshList() {
@@ -245,10 +244,15 @@ public class GameController extends Controller {
     private void refreshText() {
         InvestmentCaretaker selection = getSelection();
         investmentLabel.setText(selection == null ? "" : selection.getInvestment().getName());
-        networthField.setText(player.getNetWorth() + "");
+        networthField.setText(game.getPlayer().getNetWorth() + "");
         amountOwnedField.setText(selection == null ? "-----" : selection.getInvestment().getAmount() + "");
-        availableMoneyField.setText(player.getAvailableMoney() + "");
+        availableMoneyField.setText(game.getPlayer().getAvailableMoney() + "");
         investmentPriceField.setText(selection == null ? "-----" : selection.getInvestment().getValue() + "");
+    }
+
+    private void hideCharts() {
+        lineChart.setVisible(false);
+        barChart.setVisible(false);
     }
 
     public class BuyCommand implements Command {
@@ -258,11 +262,11 @@ public class GameController extends Controller {
             if (selected == null) {
                 return;
             }
-            if (selected.getInvestment().getValue() > player.getAvailableMoney()) { // value * kupowana ilość
+            if (selected.getInvestment().getValue() > game.getPlayer().getAvailableMoney()) { // value * kupowana ilość
                 // TODO informacja dla gracza o niedoborze pieniędzy
                 return;
             }
-            player.buy_invs(selected, 1);
+            game.getPlayer().buy_invs(selected, 1);
 
             refreshText();
         }
@@ -276,10 +280,10 @@ public class GameController extends Controller {
                 return;
             }
             if (selected.getInvestment().getAmount() <= 0) { // value * kupowana ilość
-                // TODO informacja dla gracza o braku aktywów
+                infoDialog("Nie posiadasz danych aktywów");
                 return;
             }
-            player.sell_invs(selected, 1);
+            game.getPlayer().sell_invs(selected, 1);
             refreshText();
         }
     }

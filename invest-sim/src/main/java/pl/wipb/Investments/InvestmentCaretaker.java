@@ -7,7 +7,7 @@ import pl.wipb.Investments.Investment.InvestmentMemento;
 public class InvestmentCaretaker {
 
     ArrayList<Investment.InvestmentMemento> mementos = new ArrayList<Investment.InvestmentMemento>();
-    public static final int size = 10; // od 0 do 9
+    private static final int size = 10; // od 0 do 9
 
     Investment originator;
 
@@ -22,6 +22,10 @@ public class InvestmentCaretaker {
             history[memento.getDay()] = memento.getValue();
         }
         return history;
+    }
+
+    public int getDaysCount() {
+        return mementos.size();
     }
 
     public void saveToMemento() {

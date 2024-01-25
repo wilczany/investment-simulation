@@ -14,6 +14,10 @@ public class WalletHistory {
         return net_worth;
     }
 
+    public double getTotal() {
+        return net_worth + available_money;
+    }
+
     public void setNetWorth(double net_worth) {
         this.net_worth = net_worth;
     }

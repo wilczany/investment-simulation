@@ -27,6 +27,10 @@ public class Wallet implements IWallet {
         return this.available_money;
     }
 
+    public double getTotal() {
+        return this.net_worth + this.available_money;
+    }
+
     public void sell_invs(InvestmentCaretaker inv, int amount) {
         this.available_money += inv.getInvestment().getValue() * amount;
         inv.getInvestment().substractAmount(amount);

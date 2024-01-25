@@ -25,6 +25,10 @@ public class Player {
         return this.wallet.getAvailableMoney();
     }
 
+    public IWallet getWallet() {
+        return this.wallet;
+    }
+
     public ArrayList<WalletHistory> getHistory() {
         // nie miałem pomysłu jak inaczej się do tego dostać...
         WalletHistoryProxy w = (WalletHistoryProxy) this.wallet;
@@ -34,6 +38,10 @@ public class Player {
     public void SkipDays(int time) /// SkipTime() ?
     {
 
+    }
+
+    public double getTotal() {
+        return this.wallet.getTotal();
     }
 
     public void sell_invs(InvestmentCaretaker inv, int amount) {

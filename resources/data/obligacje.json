@@ -3,12 +3,12 @@
         "name" : "ROS",
         "value" : "320",
         "interest_rate" : "1.11",
-        "saving_rate": "1"
+        "saving_rate": "3"
     },
     {
         "name" : "DBAA",
         "value" : "100",
         "interest_rate" : "1.07",
-        "saving_rate": "1"
+        "saving_rate": "2"
     }
 ]

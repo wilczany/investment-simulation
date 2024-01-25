@@ -33,7 +33,7 @@ public abstract class Investment {
     }
 
     public void setValue(double value, int day) {
-        this.value = value;
+        this.value = Math.round(value * 100.0) / 100.0;
         this.day = day;
     }
 

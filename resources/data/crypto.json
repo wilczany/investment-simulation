@@ -1,9 +1,17 @@
-{
-    "crypto" : [
-        {
-            "name": "Bitcoin"
-        }
-    ],
-
-    
-}
+[
+    {
+        "name": "Bitcoin",
+        "value": 1610,
+        "price_fluctuations": 0.5
+    },
+    {
+        "name": "DogeCoin",
+        "value": 0.32,
+        "price_fluctuations": 0.1
+    },
+    {
+        "name": "Ethereum",
+        "value": 892.11,
+        "price_fluctuations": 0.15
+    }
+]

@@ -11,6 +11,7 @@ import java.util.Map;
 
 import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
+import pl.wipb.Investments.JSONHandlers.CryptoData;
 import pl.wipb.Investments.JSONHandlers.ObligationData;
 import pl.wipb.Investments.JSONHandlers.StockData;
 import pl.wipb.Iterator.TimeIterator;
@@ -24,7 +25,7 @@ public class Game {
     private String player_name;
     private List<Double> high_score;
     private ArrayList<InvestmentCaretaker> caretakers = new ArrayList<InvestmentCaretaker>();
-
+    private int game_length;
 
     public static Game getInstance() {
         if (Game.instance == null) {
@@ -33,11 +34,12 @@ public class Game {
         return Game.instance;
     }
 
-    public void startGame() {
+    public void startGame(String name) {
+        this.player = new Player(name);
         initDatafromJSON();
     }
-    
-    public void restart(){
+
+    public void restart() {
         Investment = null;
         day = -0;
         player = null;
@@ -47,9 +49,7 @@ public class Game {
     }
 
     public void endGame() {
-
-
-
+        Double total;
     }
 
     public void addPlayer(Player player) {
@@ -58,17 +58,18 @@ public class Game {
 
     public void nextDay() {
         Iterator ite = new TimeIterator(caretakers);
+        day++;
 
         while (ite.hasNext()) {
             InvestmentCaretaker caretaker = null;
             caretaker = ite.next();
-            caretaker.restoreFromMemento(day + 1);
+            caretaker.restoreFromMemento(day);
         }
-        day++;
+        // day++;
     }
 
-    public void skipDays(int number) {
-        day += number;
+    public boolean isLastDay() {
+        return day == game_length;
     }
 
     public void printStockValues() {
@@ -102,13 +103,19 @@ public class Game {
     private void initDatafromJSON() {
         StockData data1 = new StockData("resources/data/akcje.json");
         ObligationData data2 = new ObligationData("resources/data/obligacje.json");
+        CryptoData data3 = new CryptoData("resources/data/crypto.json");
         ArrayList<InvestmentCaretaker> tmp = data1.getCaretakers();
         tmp.addAll(data2.getCaretakers());
+        tmp.addAll(data3.getCaretakers());
+        this.game_length = tmp.get(0).getDaysCount();
 
         for (InvestmentCaretaker investmentCaretaker : tmp) {
             caretakers.add(investmentCaretaker);
         }
-        // TODO zrob to samo dla reszty inwestycji
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
 }

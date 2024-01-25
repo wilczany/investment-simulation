@@ -7,6 +7,8 @@ public interface IWallet {
 
     double getAvailableMoney();
 
+    double getTotal();
+
     void sell_invs(InvestmentCaretaker inv, int amount);
 
     void buy_invs(InvestmentCaretaker inv, int amount);
