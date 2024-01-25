@@ -89,7 +89,7 @@ public class MenuController extends Controller{
         System.out.println("openHighScore");
     }
 
-    // public void setMainController(MainController mainController) {
-    //     this.mainController = mainController;
-    // }
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 }
