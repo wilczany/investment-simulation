@@ -1,5 +1,9 @@
 package pl.wipb;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,13 +39,14 @@ public class Game {
     }
 
     public void startGame(String name) {
+        this.player_name = name;
         this.player = new Player(name);
         initDatafromJSON();
     }
 
     public void restart() {
         Investment = null;
-        day = -0;
+        day = 0;
         player = null;
         high_score = null;
         caretakers = new ArrayList<InvestmentCaretaker>();
@@ -49,7 +54,23 @@ public class Game {
     }
 
     public void endGame() {
-        Double total;
+        Double total = player.getTotal();
+
+        File file = new File("resources/highscore.txt");
+        HashMap<String, Double> scores = new HashMap<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" - ");
+                scores.put(parts[0], Double.parseDouble(parts[1]));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for ()
+
     }
 
     public void addPlayer(Player player) {

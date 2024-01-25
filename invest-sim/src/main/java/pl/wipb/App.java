@@ -19,7 +19,7 @@ public class App extends Application {
         // fxml = new FXMLLoader(getClass().getResource("/fxml/menu.fxml"));
         fxml = new FXMLLoader(getClass().getResource("/fxml/main-screen.fxml"));
         try {
-        
+
             Scene scene = new Scene(fxml.load());
 
             stage.setTitle("Portfel inwestycyjny");
@@ -37,42 +37,5 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
-        // tekstowy debug
-        // Game g = Game.getInstance();
-        // for (int i = 0; i < 15; i++) {
-        // System.out.println("dzień " + i);
-        // g.nextDay();
-        // }
     }
-
-    // public void switchScene(String fxmlFile)
-    // {
-
-    // FXMLLoader loader = new FXMLLoader(getClass()
-    // .getResource(fxmlFile));
-    // Parent root;
-    // try
-    // {
-    // root = (Parent)loader.load();
-    // if(fxmlFile.equals("calculator.fxml"))
-    // {
-    // BasicCalculatorView controller = (BasicCalculatorView)loader.getController();
-    // controller.setModel(new BasicCalculatorModelTest(controller));
-    // controller.setLogic(this);
-    // }
-    // else if(fxmlFile.equals("TestSwitch.fxml"))
-    // {
-    // TestSwitch controller = (TestSwitch)loader.getController();
-    // controller.setLogic(this);
-    // }
-    // this.stage.setScene(new Scene(root));
-    // }
-    // catch (IOException e)
-    // {
-    // e.printStackTrace();
-    // }
-
-    // }
-
 }

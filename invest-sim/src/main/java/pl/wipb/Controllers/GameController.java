@@ -77,6 +77,7 @@ public class GameController extends Controller {
         }
 
         game.startGame(name);
+        // nameLabel.setText(name);
 
         investmentCaretakers = game.getInvestments();
 

@@ -29,6 +29,10 @@ public class Player {
         return this.wallet;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public ArrayList<WalletHistory> getHistory() {
         // nie miałem pomysłu jak inaczej się do tego dostać...
         WalletHistoryProxy w = (WalletHistoryProxy) this.wallet;
