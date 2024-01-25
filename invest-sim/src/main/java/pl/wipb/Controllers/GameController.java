@@ -81,8 +81,7 @@ public class GameController extends Controller {
 
             } else {
                 name = input.getText();
-                System.out.println("Nazwa gracza: " + name);
-                // startGame(name);
+
                 break;
             }
         }
@@ -137,8 +136,6 @@ public class GameController extends Controller {
             showHighScores();
             Game.getInstance().restart();
             back();
-            // TODO boolean dla zakonczonej gry, zmiana nazwy przycisku nastepny dzien na
-            // koniec gry, dodac if dla tego booleana na poczatku tego handlera
 
         } else {
             game.nextDay();
@@ -246,7 +243,6 @@ public class GameController extends Controller {
     private void showWalletHandler(ActionEvent event) {
         ArrayList<WalletHistory> history = game.getPlayer().getHistory();
         System.out.println("historia");
-        // TODO iterator dla historii
         ArrayList<Double> sums = new ArrayList<Double>();
 
         for (int i = 0; i < history.size(); i++) {

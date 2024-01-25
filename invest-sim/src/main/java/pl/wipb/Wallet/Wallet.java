@@ -10,7 +10,6 @@ public class Wallet implements IWallet {
 
     static final double START_MONEY = 10000.0;
 
-    // TODO net_worth = available_money+investments_value
 
     private double net_worth;
     private double available_money;

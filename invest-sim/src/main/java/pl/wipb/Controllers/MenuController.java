@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import javafx.application.Platform;
 
 import javafx.fxml.FXMLLoader;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -32,9 +34,14 @@ public class MenuController extends Controller{
     }
 
     @FXML
-    public void startGame() {
+    public void startGame() throws Exception {
         
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
+        try{System.out.println(new File("/fxml/game.fxml").getCanonicalPath());}catch   (Exception e) {
+            throw e;
+        }
+        
+       
         Parent root = null;
         try {
             root = fxml.load();
@@ -50,43 +57,11 @@ public class MenuController extends Controller{
     }   
 
     @FXML
-    public void pre_game() {
-        String name;
-        TextInputDialog dialog = new TextInputDialog();    
-        dialog.setTitle("Wprowadź nazwę gracza");
-        // dialog.getDialogPane().setContentText("Nazwa gracza:");
-
-        Optional<String> result = dialog.showAndWait();
-        
-        TextField input = dialog.getEditor();
-
-        if (result.isPresent()) {
-            name = input.getText();
-            System.out.println("Nazwa gracza: " + name);
-            // startGame(name);
-        }
-        else {
-            Alert al = new Alert(AlertType.ERROR);
-            al.setTitle("Błąd");
-            al.setContentText("Należy podać nazwę gracza");
-            al.showAndWait();
-
-            return;
-        }
-
-    }
-
-    @FXML
     public void exit() {
         try {
             Platform.exit();
         } catch (Exception e) {
         }
-    }
-
-    @FXML
-    public void openHighScore() {
-        System.out.println("openHighScore");
     }
 
     public void setMainController(MainController mainController) {

@@ -64,7 +64,6 @@ public class Game {
             String line;
 
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
                 String[] parts = line.split(" - ");
                 scores.add(Double.parseDouble(parts[1]));
                 names.add(parts[0]);
@@ -77,8 +76,7 @@ public class Game {
         int i = 0; // index of names from new leaderboard
         int j = 0; // index of names from old leaderboard
         boolean updated = false;
-        System.out.println(scores.size());
-        System.out.println(names);
+
         while (i < 3) {
             if (!updated && total >= scores.get(j)) {
                 sb.append(player_name);

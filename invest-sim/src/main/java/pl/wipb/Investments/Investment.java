@@ -58,8 +58,7 @@ public class Investment {
         return value;
     }
 
-    // TODO zrobienie klonowania do róznych typów inwestycji
-    // trzeba rozpatrzyc na czym to bedzie polegac bo nie pameitam
+
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
