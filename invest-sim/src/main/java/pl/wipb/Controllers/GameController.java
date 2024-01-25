@@ -12,11 +12,14 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.Chart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.StackPane;
 import pl.wipb.Game;
 import pl.wipb.Player;
@@ -26,16 +29,20 @@ import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Wallet.WalletHistory;
 
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class GameController extends Controller {
     Game game = Game.getInstance();
     // TODO player ma byc uzywany z Game (spojnosc z UMLem), przejrzyc wszystkie
     // uzycia
-    Player player = new Player("testowy"); // przekazywanie z menu? kontroler ekranu tworzenia nowego gracza?
+    Player player; // przekazywanie z menu? kontroler ekranu tworzenia nowego gracza?
+    String name;
     ArrayList<InvestmentCaretaker> investmentCaretakers;
     GraphDirector graphDirector = new GraphDirector();
 
     int numberOfPoints = 0;
+
 
     @FXML
     ListView<InvestmentCaretaker> caretakersList;
@@ -56,8 +63,37 @@ public class GameController extends Controller {
 
     // TODO refresh po ponownym wejściu
 
+
     @FXML
     void initialize() {
+
+        // xdd
+        String tmp;
+        TextInputDialog dialog = new TextInputDialog();    
+        dialog.setTitle("Wprowadź nazwę gracza");
+        
+
+        while (true) {
+        Optional<String> result = dialog.showAndWait();
+        TextField input = dialog.getEditor();
+        
+        
+
+        if (result.isPresent() || !input.getText().trim().isEmpty()) {
+            tmp = input.getText();
+            System.out.println("Nazwa gracza: " + tmp);
+            // startGame(name);
+            break;
+        }
+        else {
+            Alert al = new Alert(AlertType.ERROR);
+            al.setTitle("Błąd");
+            al.setContentText("Należy podać nazwę gracza");
+            al.showAndWait();
+        }
+        }
+        
+        player = new Player("testowy");
         game.startGame();
 
         investmentCaretakers = game.getInvestments();
@@ -177,11 +213,24 @@ public class GameController extends Controller {
     @FXML
     private void showWalletHandler(ActionEvent event) {
         ArrayList<WalletHistory> history = player.getHistory();
-        int d = -1;
+        System.out.println("historia");
         // TODO iterator dla historii
+        ArrayList<Double> sums = new ArrayList<Double>();
+
         for (int i = 0; i < history.size(); i++) {
-            // history.get(i).
+            sums.add(history.get(i).getAvailableMoney() + history.get(i).getNetWorth());
+            // sums.add(player.) dostac sie do portfela(proxy) w graczu i sciagnac aktualny
+            // stan historii
         }
+
+        XYChart chart = lineChart;
+        graphDirector.setBuilder(0);
+        if (barChart.isVisible()) {
+            graphDirector.setBuilder(1);
+            chart = barChart;
+        }
+
+        graphDirector.appendChart(sums, chart);
     }
 
     private void refreshList() {

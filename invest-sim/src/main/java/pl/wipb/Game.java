@@ -21,33 +21,34 @@ public class Game {
     private int day;
     private static Game instance = null;
     private Player player;
+    private String player_name;
     private List<Double> high_score;
     private ArrayList<InvestmentCaretaker> caretakers = new ArrayList<InvestmentCaretaker>();
 
+
     public static Game getInstance() {
-
-
         if (Game.instance == null) {
-            // TODO wczytanie highscore z pliku
-
             Game.instance = new Game();
         }
         return Game.instance;
     }
 
+    public void startGame() {
+        initDatafromJSON();
+    }
+    
     public void restart(){
         Investment = null;
         day = -0;
         player = null;
         high_score = null;
         caretakers = new ArrayList<InvestmentCaretaker>();
-    }
-
-    public void startGame() {
-        initDatafromJSON();
+        player_name = null;
     }
 
     public void endGame() {
+
+
 
     }
 
