@@ -16,7 +16,6 @@ public class InvestmentCaretaker {
     public double[] getInvestmentHistory() {
         double[] history = new double[mementos.size()];
         for (InvestmentMemento memento : mementos) {
-            System.out.println(memento.getValue());
             history[memento.getDay()] = memento.getValue();
         }
         return history;

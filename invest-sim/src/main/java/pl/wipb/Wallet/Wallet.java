@@ -49,12 +49,12 @@ public class Wallet implements IWallet {
 
         for (InvestmentCaretaker inv : investments) {
 
-            System.out.println("pętla w wallet");
+;
             tmp += inv.getInvestment().getValue() * inv.getInvestment().getAmount();
-            System.out.println("tmp: " + tmp);
+
         }
 
         this.net_worth = tmp;
-        System.out.println("net_worth: " + this.net_worth);
+
     }
 }

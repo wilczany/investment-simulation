@@ -242,7 +242,6 @@ public class GameController extends Controller {
     @FXML
     private void showWalletHandler(ActionEvent event) {
         ArrayList<WalletHistory> history = game.getPlayer().getHistory();
-        System.out.println("historia");
         ArrayList<Double> sums = new ArrayList<Double>();
 
         for (int i = 0; i < history.size(); i++) {

@@ -125,11 +125,7 @@ public class Game {
         return day == game_length - 1;
     }
 
-    public void printStockValues() {
-        for (InvestmentCaretaker investmentCaretaker : caretakers) {
-            System.out.println(investmentCaretaker.getInvestment().getValue());
-        }
-    }
+ 
 
     public ArrayList<InvestmentCaretaker> getInvestments() {
         return caretakers;

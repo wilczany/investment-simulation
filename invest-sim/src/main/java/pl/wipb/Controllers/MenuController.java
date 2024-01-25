@@ -37,11 +37,7 @@ public class MenuController extends Controller{
     public void startGame() throws Exception {
         
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
-        try{System.out.println(new File("/fxml/game.fxml").getCanonicalPath());}catch   (Exception e) {
-            throw e;
-        }
-        
-       
+           
         Parent root = null;
         try {
             root = fxml.load();
