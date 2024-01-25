@@ -62,7 +62,6 @@
       <menus>
         <Menu mnemonicParsing="false" text="Gra">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#restartGameHandler" text="Nowa Gra" />
             <MenuItem mnemonicParsing="false" onAction="#showHighScores" text="Wyświetl wyniki" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#exitGameHandler" text="Wyjście" />
@@ -77,8 +76,8 @@
                   <ListView fx:id="caretakersList" layoutX="17.0" layoutY="90.0" prefHeight="439.0" prefWidth="200.0" />
                   <Button fx:id="showWalletBtn" layoutX="4.0" layoutY="59.0" mnemonicParsing="false" onAction="#showWalletHandler" text="Wyświetl portfel" />
                   <Button fx:id="nextDayBtn" layoutX="116.0" layoutY="59.0" mnemonicParsing="false" onAction="#nextDayBtnHandler" text="Następny dzień" />
-                  <Text layoutX="32.0" fx:id="nameText" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gracz: " textAlignment="CENTER" wrappingWidth="147.51953125" />
-                  <Text layoutX="32.0" fx:id="dayText" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzień: " textAlignment="CENTER" wrappingWidth="147.51953125" />
+                  <Text fx:id="nameText" layoutX="32.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gracz: " textAlignment="CENTER" wrappingWidth="147.51953125" />
+                  <Text fx:id="dayText" layoutX="32.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzień: " textAlignment="CENTER" wrappingWidth="147.51953125" />
           </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">

@@ -221,14 +221,18 @@ public class GameController extends Controller {
     // context menu
     @FXML
     public void exitGameHandler(ActionEvent event) {
-        Game.getInstance().restart();
-        back();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Wyjście z gry");
+        alert.setHeaderText("Czy na pewno chcesz wyjść z gry?");
+        alert.setContentText("Wszystkie dane zostaną utracone");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            Game.getInstance().restart();
+            back();
+        }
+        
     }
 
-    @FXML
-    public void restartGameHandler(ActionEvent event) {
-
-    } // wykres historii portfela
 
     @FXML
     private void showWalletHandler(ActionEvent event) {
