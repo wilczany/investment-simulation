@@ -57,19 +57,49 @@ public class Game {
         Double total = player.getTotal();
 
         File file = new File("resources/highscore.txt");
-        HashMap<String, Double> scores = new HashMap<>();
+        // HashMap<String, Double> scores = new HashMap<>();
+        List<Double> scores = new ArrayList<Double>();
+        List<String> names = new ArrayList<String>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
 
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" - ");
-                scores.put(parts[0], Double.parseDouble(parts[1]));
+                scores.add(Double.parseDouble(parts[1]));
+                names.add(parts[0]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        for ()
+        StringBuilder sb = new StringBuilder();
+        int i = 0; // index of names from new leaderboard
+        int j = 0; // index of names from old leaderboard
+        boolean updated = false;
+        while (i < 3) {
+            if (!updated && total > scores.get(i)) {
+                sb.append(player_name);
+                sb.append(" - ");
+                sb.append(total);
+                sb.append("\n");
+                i++;
+            } else {
+                sb.append(names.get(j));
+                sb.append(" - ");
+                sb.append(scores.get(j));
+                sb.append("\n");
+                j++;
+                i++;
+            }
+        }
+
+        try {
+            java.io.FileWriter fw = new java.io.FileWriter("resources/highscore.txt");
+            fw.write(sb.toString());
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

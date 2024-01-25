@@ -17,11 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.StackPane;
 import pl.wipb.Game;
-import pl.wipb.Command.Command;
 import pl.wipb.Graph.GraphDirector;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Wallet.WalletHistory;
 import pl.wipb.Wallet.WalletHistoryProxy;
+import pl.wipb.Command.Command;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -77,7 +77,6 @@ public class GameController extends Controller {
         }
 
         game.startGame(name);
-        // nameLabel.setText(name);
 
         investmentCaretakers = game.getInvestments();
 
@@ -120,6 +119,10 @@ public class GameController extends Controller {
 
     @FXML
     private void nextDayBtnHandler(ActionEvent event) {
+        if (game.isLastDay()) {
+            game.endGame();
+            showHighScores();
+        }
         game.nextDay();
         game.getPlayer().next_day();
 
@@ -198,7 +201,11 @@ public class GameController extends Controller {
         back();
     }
 
-    // wykres historii portfela
+    @FXML
+    public void restartGameHandler(ActionEvent event) {
+
+    } // wykres historii portfela
+
     @FXML
     private void showWalletHandler(ActionEvent event) {
         ArrayList<WalletHistory> history = game.getPlayer().getHistory();
