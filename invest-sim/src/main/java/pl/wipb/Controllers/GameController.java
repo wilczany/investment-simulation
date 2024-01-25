@@ -195,27 +195,27 @@ public class GameController extends Controller {
 
     @FXML
     private void buyHandler(ActionEvent event) {
-        
-        int amount = getAmount();
         Command buyCmd = new BuyCommand();
-        buyCmd.execute(1);
+        buyCmd.execute();
     }
 
     @FXML
     private void sellHandler(ActionEvent event) {
         Command sellCmd = new SellCommand();
-        sellCmd.execute(1);
+        sellCmd.execute();
     }
 
-    private int getAmount() {
+    private int getAmount(int max) {
         Dialog<Integer> dialog = new Dialog<>();
         dialog.setTitle("Ilość");
         dialog.setHeaderText("Podaj ilość aktywów");
         ButtonType okButton = new ButtonType("OK", ButtonData.OK_DONE);
-        Spinner<Integer> spinner = new Spinner<>(1, 100, 1);
+        Spinner<Integer> spinner = new Spinner<>(1, max, 1);
         dialog.getDialogPane().setContent(spinner);
         dialog.getDialogPane().getButtonTypes().add(okButton);
-        return dialog.showAndWait().get();
+        dialog.showAndWait();
+        return spinner.getValue();
+    //     return 
     }
 
     // context menu
@@ -289,7 +289,7 @@ public class GameController extends Controller {
     
     public class BuyCommand implements Command {
         @Override
-        public void execute(int amount) {
+        public void execute() {
             InvestmentCaretaker selected = getSelection();
             if (selected == null) {
                 return;
@@ -298,7 +298,14 @@ public class GameController extends Controller {
                 // TODO informacja dla gracza o niedoborze pieniędzy
                 return;
             }
-            game.getPlayer().buy_invs(selected, 1);
+            int max_amount = Math.floorDiv(
+                (int)game.getPlayer().getAvailableMoney(),
+                (int)selected.getInvestment().getValue()); 
+            
+       
+            int amount_to_buy = getAmount(max_amount);
+ 
+            game.getPlayer().buy_invs(selected, amount_to_buy);
 
             refreshText();
         }
@@ -306,7 +313,7 @@ public class GameController extends Controller {
 
     public class SellCommand implements Command {
         @Override
-        public void execute(int amount) {
+        public void execute() {
             InvestmentCaretaker selected = getSelection();
             if (selected == null) {
                 return;
@@ -315,7 +322,9 @@ public class GameController extends Controller {
                 infoDialog("Nie posiadasz danych aktywów");
                 return;
             }
-            game.getPlayer().sell_invs(selected, 1);
+            int max_amount = selected.getInvestment().getAmount();
+            int amount_to_sell = getAmount(max_amount);
+            game.getPlayer().sell_invs(selected, amount_to_sell);
             refreshText();
         }
     }

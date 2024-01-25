@@ -61,6 +61,11 @@ public abstract class Investment {
     // TODO zrobienie klonowania do róznych typów inwestycji
     // trzeba rozpatrzyc na czym to bedzie polegac bo nie pameitam
 
+    private double Double(double value2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'Double'");
+    }
+
     @Override
     protected Object clone() throws CloneNotSupportedException {
 
