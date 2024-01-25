@@ -79,17 +79,19 @@ public class GameController extends Controller {
         
         
 
-        if (result.isPresent() || !input.getText().trim().isEmpty()) {
-            tmp = input.getText();
-            System.out.println("Nazwa gracza: " + tmp);
-            // startGame(name);
-            break;
-        }
-        else {
+        if (!result.isPresent() || input.getText() == null || input.getText().trim().isEmpty()) {
+            
             Alert al = new Alert(AlertType.ERROR);
             al.setTitle("Błąd");
             al.setContentText("Należy podać nazwę gracza");
             al.showAndWait();
+            
+        }
+        else {
+            tmp = input.getText();
+            System.out.println("Nazwa gracza: " + tmp);
+            // startGame(name);
+            break;
         }
         }
         
