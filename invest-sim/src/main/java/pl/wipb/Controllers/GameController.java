@@ -20,6 +20,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import pl.wipb.Game;
 import pl.wipb.Graph.GraphDirector;
 import pl.wipb.Investments.InvestmentCaretaker;
@@ -46,6 +47,8 @@ public class GameController extends Controller {
     @FXML
     TextField networthField, amountOwnedField, availableMoneyField, investmentPriceField;
     @FXML
+    Text nameText, dayText;
+    @FXML
     MenuBar menuBar;
     @FXML
     LineChart<Double, Double> lineChart;
@@ -67,12 +70,13 @@ public class GameController extends Controller {
             Optional<String> result = dialog.showAndWait();
             TextField input = dialog.getEditor();
 
-            if (!result.isPresent() || input.getText() == null || input.getText().trim().isEmpty()) {
+            if (!result.isPresent() || input.getText() == null || input.getText().trim().isEmpty()
+                    || input.getText().length() > 17) {
 
                 Alert al = new Alert(AlertType.ERROR);
                 al.setTitle("Błąd");
                 al.setHeaderText("Nieprawidłowa nazwa gracza");
-                // al.setContentText("Należy podać nazwę gracza");
+                al.setContentText("Nazwa gracza powinna mieć od 1 do 17 znaków");
                 al.showAndWait();
 
             } else {
@@ -83,6 +87,7 @@ public class GameController extends Controller {
             }
         }
 
+        nameText.setText("Gracz: " + name);
         game.startGame(name);
 
         investmentCaretakers = game.getInvestments();
@@ -127,18 +132,22 @@ public class GameController extends Controller {
     @FXML
     private void nextDayBtnHandler(ActionEvent event) {
         if (game.isLastDay()) {
+            dayText.setText("Koniec symulacji");
             game.endGame();
             showHighScores();
             Game.getInstance().restart();
             back();
+            // TODO boolean dla zakonczonej gry, zmiana nazwy przycisku nastepny dzien na
+            // koniec gry, dodac if dla tego booleana na poczatku tego handlera
 
-        }else{
-        game.nextDay();
-        game.getPlayer().next_day();
+        } else {
+            game.nextDay();
+            game.getPlayer().next_day();
+            dayText.setText("Dzień: " + game.getInvestments().getFirst().getInvestment().getDay());
 
-        refreshList();
-        refreshText();
-        hideCharts();
+            refreshList();
+            refreshText();
+            hideCharts();
         }
     }
 
@@ -215,7 +224,7 @@ public class GameController extends Controller {
         dialog.getDialogPane().getButtonTypes().add(okButton);
         dialog.showAndWait();
         return spinner.getValue();
-    //     return 
+        // return
     }
 
     // context menu
@@ -230,9 +239,8 @@ public class GameController extends Controller {
             Game.getInstance().restart();
             back();
         }
-        
-    }
 
+    }
 
     @FXML
     private void showWalletHandler(ActionEvent event) {
@@ -290,7 +298,7 @@ public class GameController extends Controller {
         lineChart.setVisible(false);
         barChart.setVisible(false);
     }
-    
+
     public class BuyCommand implements Command {
         @Override
         public void execute() {
@@ -299,16 +307,15 @@ public class GameController extends Controller {
                 return;
             }
             if (selected.getInvestment().getValue() > game.getPlayer().getAvailableMoney()) { // value * kupowana ilość
-                // TODO informacja dla gracza o niedoborze pieniędzy
+                infoDialog("Nie posiadasz wystarczająco gotówki");
                 return;
             }
             int max_amount = Math.floorDiv(
-                (int)game.getPlayer().getAvailableMoney(),
-                (int)selected.getInvestment().getValue()); 
-            
-       
+                    (int) game.getPlayer().getAvailableMoney(),
+                    (int) selected.getInvestment().getValue());
+
             int amount_to_buy = getAmount(max_amount);
- 
+
             game.getPlayer().buy_invs(selected, amount_to_buy);
 
             refreshText();
@@ -332,6 +339,5 @@ public class GameController extends Controller {
             refreshText();
         }
     }
-
 
 }

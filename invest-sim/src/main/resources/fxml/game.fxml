@@ -77,7 +77,7 @@
                   <Button fx:id="showWalletBtn" layoutX="4.0" layoutY="59.0" mnemonicParsing="false" onAction="#showWalletHandler" text="Wyświetl portfel" />
                   <Button fx:id="nextDayBtn" layoutX="116.0" layoutY="59.0" mnemonicParsing="false" onAction="#nextDayBtnHandler" text="Następny dzień" />
                   <Text fx:id="nameText" layoutX="32.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gracz: " textAlignment="CENTER" wrappingWidth="147.51953125" />
-                  <Text fx:id="dayText" layoutX="32.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzień: " textAlignment="CENTER" wrappingWidth="147.51953125" />
+                  <Text fx:id="dayText" layoutX="32.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzień: 0" textAlignment="CENTER" wrappingWidth="147.51953125" />
           </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
