@@ -1,7 +1,7 @@
 package pl.wipb.Wallet;
 
 import java.util.ArrayList;
-import pl.wipb.Investments.InvestmentCaretaker;
+import pl.wipb.Investments.Investment;
 
 public class WalletHistoryProxy implements IWallet {
 
@@ -41,13 +41,13 @@ public class WalletHistoryProxy implements IWallet {
         return this.implementation.getTotal();
     }
 
-    public void sell_invs(InvestmentCaretaker inv, int amount) {
+    public void sell_invs(Investment inv, int amount) {
         implementation.sell_invs(inv, amount);
 
         update_wallet_history();
     }
 
-    public void buy_invs(InvestmentCaretaker inv, int amount) {
+    public void buy_invs(Investment inv, int amount) {
 
         implementation.buy_invs(inv, amount);
 

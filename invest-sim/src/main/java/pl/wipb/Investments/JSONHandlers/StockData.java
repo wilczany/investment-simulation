@@ -1,6 +1,5 @@
 package pl.wipb.Investments.JSONHandlers;
 
-import pl.wipb.Investments.Stock;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Investments.Investment;
 import org.json.JSONArray;
@@ -38,7 +37,7 @@ public class StockData {
     private void jsonToObjects(JSONObject json) {
         String name = (String) json.get("name");
         JSONArray values = json.getJSONArray("values");
-        Investment inv = new Stock(name);
+        Investment inv = new Investment(name);
         InvestmentCaretaker caretaker = new InvestmentCaretaker(inv);
         
         for (int i= 0; i <values.length() ; i++) {

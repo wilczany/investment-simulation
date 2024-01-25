@@ -2,6 +2,7 @@ package pl.wipb;
 
 import java.util.ArrayList;
 
+import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Wallet.*;
 
@@ -49,11 +50,13 @@ public class Player {
     }
 
     public void sell_invs(InvestmentCaretaker inv, int amount) {
-        this.wallet.sell_invs(inv, amount);
+        Investment i = inv.getInvestment();
+        this.wallet.sell_invs(i, amount);
     }
 
     public void buy_invs(InvestmentCaretaker inv, int amount) {
-        this.wallet.buy_invs(inv, amount);
+        Investment i = inv.getInvestment();
+        this.wallet.buy_invs(i, amount);
     }
 
     public void next_day() {
