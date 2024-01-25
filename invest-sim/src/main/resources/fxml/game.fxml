@@ -56,7 +56,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="pl.wipb.Controllers.GameController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.wipb.Controllers.GameController">
   <children>
     <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
       <menus>
@@ -74,9 +74,11 @@
       <items>
         <AnchorPane>
           <children>
-                  <ListView fx:id="caretakersList" layoutX="17.0" layoutY="70.0" prefHeight="459.0" prefWidth="200.0" />
-                  <Button fx:id="showWalletBtn" layoutX="5.0" layoutY="33.0" mnemonicParsing="false" onAction="#showWalletHandler" text="Wyświetl portfel" />
-                  <Button fx:id="nextDayBtn" layoutX="117.0" layoutY="33.0" mnemonicParsing="false" onAction="#nextDayBtnHandler" text="Następny dzień" />
+                  <ListView fx:id="caretakersList" layoutX="17.0" layoutY="90.0" prefHeight="439.0" prefWidth="200.0" />
+                  <Button fx:id="showWalletBtn" layoutX="4.0" layoutY="59.0" mnemonicParsing="false" onAction="#showWalletHandler" text="Wyświetl portfel" />
+                  <Button fx:id="nextDayBtn" layoutX="116.0" layoutY="59.0" mnemonicParsing="false" onAction="#nextDayBtnHandler" text="Następny dzień" />
+                  <Text layoutX="32.0" fx:id="nameText" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gracz: " textAlignment="CENTER" wrappingWidth="147.51953125" />
+                  <Text layoutX="32.0" fx:id="dayText" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzień: " textAlignment="CENTER" wrappingWidth="147.51953125" />
           </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
