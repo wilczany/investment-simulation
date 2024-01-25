@@ -9,10 +9,14 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.StackPane;
@@ -27,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class GameController extends Controller {
+    private static final String ButtonBar = null;
     Game game = Game.getInstance();
     boolean walletChart = false;
     ArrayList<InvestmentCaretaker> investmentCaretakers;
@@ -56,6 +61,7 @@ public class GameController extends Controller {
         String name;
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Wprowadź nazwę gracza");
+        dialog.setHeaderText("Wprowadź nazwę gracza:");
 
         while (true) {
             Optional<String> result = dialog.showAndWait();
@@ -65,7 +71,8 @@ public class GameController extends Controller {
 
                 Alert al = new Alert(AlertType.ERROR);
                 al.setTitle("Błąd");
-                al.setContentText("Należy podać nazwę gracza");
+                al.setHeaderText("Nieprawidłowa nazwa gracza");
+                // al.setContentText("Należy podać nazwę gracza");
                 al.showAndWait();
 
             } else {
@@ -188,6 +195,8 @@ public class GameController extends Controller {
 
     @FXML
     private void buyHandler(ActionEvent event) {
+        
+        int amount = getAmount();
         Command buyCmd = new BuyCommand();
         buyCmd.execute(1);
     }
@@ -196,6 +205,17 @@ public class GameController extends Controller {
     private void sellHandler(ActionEvent event) {
         Command sellCmd = new SellCommand();
         sellCmd.execute(1);
+    }
+
+    private int getAmount() {
+        Dialog<Integer> dialog = new Dialog<>();
+        dialog.setTitle("Ilość");
+        dialog.setHeaderText("Podaj ilość aktywów");
+        ButtonType okButton = new ButtonType("OK", ButtonData.OK_DONE);
+        Spinner<Integer> spinner = new Spinner<>(1, 100, 1);
+        dialog.getDialogPane().setContent(spinner);
+        dialog.getDialogPane().getButtonTypes().add(okButton);
+        return dialog.showAndWait().get();
     }
 
     // context menu
@@ -266,7 +286,7 @@ public class GameController extends Controller {
         lineChart.setVisible(false);
         barChart.setVisible(false);
     }
-
+    
     public class BuyCommand implements Command {
         @Override
         public void execute(int amount) {
@@ -299,5 +319,6 @@ public class GameController extends Controller {
             refreshText();
         }
     }
+
 
 }
