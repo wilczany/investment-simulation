@@ -3,6 +3,7 @@ package pl.wipb.Wallet;
 import java.util.ArrayList;
 
 import pl.wipb.Game;
+import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
 
 public class Wallet implements IWallet {
@@ -31,15 +32,15 @@ public class Wallet implements IWallet {
         return this.net_worth + this.available_money;
     }
 
-    public void sell_invs(InvestmentCaretaker inv, int amount) {
-        this.available_money += inv.getInvestment().getValue() * amount;
-        inv.getInvestment().substractAmount(amount);
+    public void sell_invs(Investment inv, int amount) {
+        this.available_money += inv.getValue() * amount;
+        inv.substractAmount(amount);
         next_day();
     }
 
-    public void buy_invs(InvestmentCaretaker inv, int amount) {
-        this.available_money -= inv.getInvestment().getValue() * amount;
-        inv.getInvestment().addAmount(amount);
+    public void buy_invs(Investment inv, int amount) {
+        this.available_money -= inv.getValue() * amount;
+        inv.addAmount(amount);
         next_day();
     }
 

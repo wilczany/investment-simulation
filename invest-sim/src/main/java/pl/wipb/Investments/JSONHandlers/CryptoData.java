@@ -1,7 +1,6 @@
 package pl.wipb.Investments.JSONHandlers;
 
 import pl.wipb.Investments.InvestmentCaretaker;
-import pl.wipb.Investments.Obligation;
 import pl.wipb.Investments.Investment;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,7 +40,7 @@ public class CryptoData {
         String name = (String) json.get("name");
         double value = json.getDouble("value");
         double price_fluctuations = json.getDouble("price_fluctuations");
-        Investment inv = new Obligation(name);
+        Investment inv = new Investment(name);
         InvestmentCaretaker caretaker = new InvestmentCaretaker(inv);
         Random rand = new Random();
 

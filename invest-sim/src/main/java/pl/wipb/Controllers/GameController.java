@@ -143,7 +143,7 @@ public class GameController extends Controller {
         } else {
             game.nextDay();
             game.getPlayer().next_day();
-            dayText.setText("Dzień: " + game.getInvestments().getFirst().getInvestment().getDay());
+            dayText.setText("Dzień: " + game.getInvestments().get(0).getInvestment().getDay());
 
             refreshList();
             refreshText();
@@ -306,13 +306,14 @@ public class GameController extends Controller {
             if (selected == null) {
                 return;
             }
-            if (selected.getInvestment().getValue() > game.getPlayer().getAvailableMoney()) { // value * kupowana ilość
+            if (selected.getInvestment().getValue() > game.getPlayer().getAvailableMoney()) { 
                 infoDialog("Nie posiadasz wystarczająco gotówki");
                 return;
             }
             int max_amount = Math.floorDiv(
                     (int) game.getPlayer().getAvailableMoney(),
                     (int) selected.getInvestment().getValue());
+            
 
             int amount_to_buy = getAmount(max_amount);
 

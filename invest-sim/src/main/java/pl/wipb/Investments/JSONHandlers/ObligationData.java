@@ -1,7 +1,7 @@
 package pl.wipb.Investments.JSONHandlers;
 
 import pl.wipb.Investments.InvestmentCaretaker;
-import pl.wipb.Investments.Obligation;
+
 import pl.wipb.Investments.Investment;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,7 +41,7 @@ public class ObligationData {
         double value = json.getDouble("value");
         double intereset_rate = json.getDouble("interest_rate");
         int saving_rate = json.getInt("saving_rate");
-        Investment inv = new Obligation(name);
+        Investment inv = new Investment(name);
         InvestmentCaretaker caretaker = new InvestmentCaretaker(inv);
 
         for (int i = 0; i < LIMIT; i++) {

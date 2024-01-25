@@ -1,6 +1,6 @@
 package pl.wipb.Wallet;
 
-import pl.wipb.Investments.InvestmentCaretaker;
+import pl.wipb.Investments.Investment;
 
 public interface IWallet {
     double getNetWorth();
@@ -9,9 +9,9 @@ public interface IWallet {
 
     double getTotal();
 
-    void sell_invs(InvestmentCaretaker inv, int amount);
+    void sell_invs(Investment inv, int amount);
 
-    void buy_invs(InvestmentCaretaker inv, int amount);
+    void buy_invs(Investment inv, int amount);
 
     void next_day();
 }

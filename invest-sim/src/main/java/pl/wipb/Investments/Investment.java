@@ -2,7 +2,7 @@ package pl.wipb.Investments;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public abstract class Investment {
+public class Investment {
 
     static final AtomicLong NEXT_ID = new AtomicLong(0);
     final long id = NEXT_ID.getAndIncrement();
