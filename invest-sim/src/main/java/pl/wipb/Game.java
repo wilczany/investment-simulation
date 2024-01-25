@@ -13,6 +13,8 @@ import pl.wipb.Iterator.MementoIterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+
 import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Investments.JSONHandlers.CryptoData;
@@ -56,7 +58,7 @@ public class Game {
     public void endGame() {
         Double total = player.getTotal();
 
-        File file = new File("resources/highscore.txt");
+        File file = new File("resources/highscores.txt");
         // HashMap<String, Double> scores = new HashMap<>();
         List<Double> scores = new ArrayList<Double>();
         List<String> names = new ArrayList<String>();
@@ -64,6 +66,7 @@ public class Game {
             String line;
 
             while ((line = br.readLine()) != null) {
+                System.out.println(line);
                 String[] parts = line.split(" - ");
                 scores.add(Double.parseDouble(parts[1]));
                 names.add(parts[0]);
@@ -76,12 +79,15 @@ public class Game {
         int i = 0; // index of names from new leaderboard
         int j = 0; // index of names from old leaderboard
         boolean updated = false;
+        System.out.println(scores.size());
+        System.out.println(names);
         while (i < 3) {
-            if (!updated && total > scores.get(i)) {
+            if (!updated && total >= scores.get(j)) {
                 sb.append(player_name);
                 sb.append(" - ");
                 sb.append(total);
                 sb.append("\n");
+                updated = true;
                 i++;
             } else {
                 sb.append(names.get(j));
@@ -94,7 +100,7 @@ public class Game {
         }
 
         try {
-            java.io.FileWriter fw = new java.io.FileWriter("resources/highscore.txt");
+            java.io.FileWriter fw = new java.io.FileWriter("resources/highscores.txt");
             fw.write(sb.toString());
             fw.close();
         } catch (IOException e) {
@@ -120,7 +126,7 @@ public class Game {
     }
 
     public boolean isLastDay() {
-        return day == game_length;
+        return day == game_length-1;
     }
 
     public void printStockValues() {

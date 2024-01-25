@@ -122,13 +122,17 @@ public class GameController extends Controller {
         if (game.isLastDay()) {
             game.endGame();
             showHighScores();
-        }
+            Game.getInstance().restart();
+            back();
+
+        }else{
         game.nextDay();
         game.getPlayer().next_day();
 
         refreshList();
         refreshText();
         hideCharts();
+        }
     }
 
     @FXML

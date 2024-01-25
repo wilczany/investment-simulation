@@ -38,9 +38,9 @@ public abstract class Controller {
         ButtonType okButton = new ButtonType("OK", ButtonData.OK_DONE);
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Najlepsze wyniki");
-        Map<String, Integer> scores = readScores();
+        Map<String, Double> scores = readScores();
         StringBuilder sb = new StringBuilder();
-        scores.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+        scores.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed())
                 .forEach(e -> sb.append(e.getKey() + " : " + e.getValue() + "\n"));
         
         // dialog.setContentText(sb.toString());
@@ -58,16 +58,16 @@ public abstract class Controller {
         
     }
 
-    public Map<String, Integer> readScores() {
+    public Map<String, Double> readScores() {
         
         File file = new File("resources/highscores.txt");
-        HashMap<String, Integer> scores = new HashMap<>();
+        HashMap<String, Double> scores = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" - ");
-                scores.put(parts[0], Integer.parseInt(parts[1]));
+                scores.put(parts[0], Double.parseDouble(parts[1]));
             }
         } catch (IOException e) {
             e.printStackTrace();
