@@ -13,8 +13,6 @@ import pl.wipb.Iterator.MementoIterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
-
 import pl.wipb.Investments.Investment;
 import pl.wipb.Investments.InvestmentCaretaker;
 import pl.wipb.Investments.JSONHandlers.CryptoData;
@@ -126,7 +124,7 @@ public class Game {
     }
 
     public boolean isLastDay() {
-        return day == game_length-1;
+        return day == game_length - 1;
     }
 
     public void printStockValues() {

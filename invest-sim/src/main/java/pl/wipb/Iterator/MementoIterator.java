@@ -13,7 +13,7 @@ public class MementoIterator implements Iterator {
     public MementoIterator(InvestmentCaretaker caretaker, int day) {
         this.caretaker = caretaker;
         this.day = day;
-        if (day > caretaker.getDaysCount())
+        if (day > caretaker.getDaysCount() - 1)
             this.day = caretaker.getDaysCount();
     }
 

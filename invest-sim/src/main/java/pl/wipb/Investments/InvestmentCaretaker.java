@@ -7,8 +7,6 @@ import pl.wipb.Investments.Investment.InvestmentMemento;
 public class InvestmentCaretaker {
 
     ArrayList<Investment.InvestmentMemento> mementos = new ArrayList<Investment.InvestmentMemento>();
-    private static final int size = 10; // od 0 do 9
-
     Investment originator;
 
     public InvestmentCaretaker(Investment originator) {

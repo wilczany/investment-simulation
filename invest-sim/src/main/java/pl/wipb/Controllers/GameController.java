@@ -310,9 +310,9 @@ public class GameController extends Controller {
                 infoDialog("Nie posiadasz wystarczająco gotówki");
                 return;
             }
-            int max_amount = Math.floorDiv(
-                    (int) game.getPlayer().getAvailableMoney(),
-                    (int) selected.getInvestment().getValue());
+
+            int max_amount = (int) Math
+                    .floor((game.getPlayer().getAvailableMoney() / selected.getInvestment().getValue()));
 
             int amount_to_buy = getAmount(max_amount);
 
