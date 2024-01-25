@@ -124,7 +124,7 @@
                   </StackPane>
                   <Button fx:id="buyBtn" layoutX="23.0" layoutY="477.0" mnemonicParsing="false" onAction="#buyHandler" text="Kup" />
                   <Button fx:id="sellBtn" layoutX="145.0" layoutY="477.0" mnemonicParsing="false" onAction="#sellHandler" text="Sprzedaj" />
-                  <Button fx:id="lineChartBtn" layoutX="8.0" layoutY="371.0" mnemonicParsing="false" onAction="#lineChartHandler" text="Wykres Liniowy" />
+                  <Button fx:id="lineChartBtn" layoutX="8.0" layoutY="371.0" mnemonicParsing="false" onAction="#lineChartHandler" text="Wykres liniowy" />
                   <Button fx:id="barChartBtn" layoutX="114.0" layoutY="371.0" mnemonicParsing="false" onAction="#barChartHandler" text="Wykres słupkowy" />
                   <Text layoutX="72.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena jednostki" textAlignment="CENTER" wrappingWidth="82.21875" />
                   <Text layoutX="49.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posiadana Ilość" textAlignment="CENTER" wrappingWidth="128.310546875" />
