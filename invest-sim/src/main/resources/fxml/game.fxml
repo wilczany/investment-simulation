@@ -62,8 +62,8 @@
       <menus>
         <Menu mnemonicParsing="false" text="Gra">
           <items>
-            <MenuItem mnemonicParsing="false" text="Nowa Gra" />
-            <MenuItem mnemonicParsing="false" text="Wyświetl wyniki" />
+            <MenuItem mnemonicParsing="false" onAction="#restartGameHandler" text="Nowa Gra" />
+            <MenuItem mnemonicParsing="false" onAction="#showHighScores" text="Wyświetl wyniki" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#exitGameHandler" text="Wyjście" />
           </items>
