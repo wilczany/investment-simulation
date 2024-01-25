@@ -16,7 +16,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.Optional;
 
-public class MenuController extends Controller{
+public class MenuController{
     @FXML
     private Pane mainPane;
     private Stage stage;
@@ -89,7 +89,7 @@ public class MenuController extends Controller{
         System.out.println("openHighScore");
     }
 
-    // public void setMainController(MainController mainController) {
-    //     this.mainController = mainController;
-    // }
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 }
